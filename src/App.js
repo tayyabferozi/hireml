@@ -1,24 +1,70 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
+
+import Landing from "./screens/Landing";
+import Pricing from "./screens/Pricing";
+import Support from "./screens/Support";
+import Blogs from "./screens/Blogs";
+import Login from "./screens/Login";
+import Register from "./screens/Register";
+import UpcomingInterview from "./screens/UpcomingInterview";
+
+const routesData = [
+  {
+    path: "/",
+    Component: Landing,
+  },
+  {
+    path: "/pricing",
+    Component: Pricing,
+  },
+  {
+    path: "/support",
+    Component: Support,
+  },
+  {
+    path: "/blogs",
+    Component: Blogs,
+  },
+  {
+    path: "/login",
+    Component: Login,
+  },
+  {
+    path: "/register",
+    Component: Register,
+  },
+  {
+    path: "/upcoming-interview",
+    Component: UpcomingInterview,
+  },
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ScrollToTop />
+      <Routes>
+        {routesData.map((el, idx) => {
+          const { path, Component, ...rest } = el;
+
+          return (
+            <Route
+              key={"route-item-" + idx}
+              path={"/" + path}
+              element={<Component {...rest} />}
+            />
+          );
+        })}
+
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </Router>
   );
 }
 
