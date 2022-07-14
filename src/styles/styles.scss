@@ -126,6 +126,10 @@
   text-align: center;
   padding-top: 100px;
 
+  @media screen and (max-width: 767px) {
+    padding-top: 60px;
+  }
+
   .footer-top {
     display: flex;
     flex-direction: column;
@@ -133,9 +137,22 @@
     align-items: center;
     gap: 60px;
 
+    @media screen and (max-width: 991px) {
+      gap: 44px;
+    }
+
+    @media screen and (max-width: 575px) {
+      gap: 34px;
+    }
+
     .links {
       display: flex;
       gap: 40px;
+
+      @media screen and (max-width: 400px) {
+        flex-direction: column;
+        gap: 20px;
+      }
 
       a {
         @include transitioned;
