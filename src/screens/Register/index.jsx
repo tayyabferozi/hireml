@@ -21,6 +21,20 @@ const Register = () => {
             <Input className="mt-34" label="Confirm Password" type="password" />
           </div>
 
+          <label class="custom-checkbox mt-10">
+            I agree with the{" "}
+            <Link to="#0" className="highlight">
+              terms of services
+            </Link>{" "}
+            &amp;{" "}
+            <Link to="#0" className="highlight">
+              privacy policy
+            </Link>{" "}
+            of the website
+            <input type="checkbox" />
+            <span class="checkmark"></span>
+          </label>
+
           <Link className="d-block text-end highlight fs-12 mt-26" to="/">
             {/* Forgot password? */}
           </Link>
@@ -29,7 +43,7 @@ const Register = () => {
             Register
           </Button>
 
-          <div className="text-center fs-14 text-dark-1 mt-40">
+          <div className="text-center fs-14 fs-991-12 text-dark-1 mt-40">
             Already have an account?{" "}
             <Link className="highlight" to="/login">
               Login

@@ -4,6 +4,36 @@ import Section from "../../../components/Section";
 const Features = () => {
   return (
     <Section id="landing-features">
+      <img
+        className="bg-feature-1"
+        src="/assets/vectors/bg-feature-1.svg"
+        alt="bg"
+      />
+      <img
+        className="bg-feature-2"
+        src="/assets/vectors/bg-feature-2.svg"
+        alt="bg"
+      />
+      <img
+        className="bg-feature-3"
+        src="/assets/vectors/bg-feature-3.svg"
+        alt="bg"
+      />
+      <img
+        className="bg-feature-4"
+        src="/assets/vectors/bg-feature-4.svg"
+        alt="bg"
+      />
+      <img
+        className="bg-feature-5"
+        src="/assets/vectors/bg-feature-5.svg"
+        alt="bg"
+      />
+      <img
+        className="bg-feature-6"
+        src="/assets/vectors/bg-feature-6.svg"
+        alt="bg"
+      />
       <div className="page-container px-0">
         <div className="container-fluid">
           <div className="row">

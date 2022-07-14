@@ -17,7 +17,10 @@ const Login = () => {
             <Input className="mt-34" label="Password" type="password" />
           </div>
 
-          <Link className="d-block text-end highlight fs-12 mt-26" to="/">
+          <Link
+            className="d-block text-end highlight fs-12 fs-991-10 mt-26"
+            to="/"
+          >
             Forgot password?
           </Link>
 
@@ -25,7 +28,7 @@ const Login = () => {
             Login
           </Button>
 
-          <div className="text-center fs-14 text-dark-1 mt-40">
+          <div className="text-center fs-14 fs-991-12 text-dark-1 mt-40">
             Don’t have an account?{" "}
             <Link className="highlight" to="/register">
               Sign up

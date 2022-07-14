@@ -33,6 +33,7 @@ body {
   &.fancy {
     position: relative;
     padding-top: 80px;
+    overflow: hidden;
 
     .bg-fancy {
       position: absolute;
@@ -40,16 +41,52 @@ body {
       top: 0;
       right: 0;
       background-color: $color3;
-      // height: 590px;
       padding-top: 30%;
 
+      @media screen and (max-width: 1600px) {
+        padding-top: 45%;
+      }
+
+      @media screen and (max-width: 991px) {
+        padding-top: 53%;
+      }
+
       .oval-1,
-      .oval-2 {
+      .oval-2,
+      .wave {
+        position: absolute;
         position: absolute;
       }
 
+      .oval-1 {
+        left: 0;
+        top: -130px;
+
+        @media screen and (max-width: 1200px) {
+          left: -20px;
+          top: 0px;
+        }
+
+        @media screen and (max-width: 767px) {
+          left: 0;
+        }
+      }
+
+      .oval-2 {
+        right: 0;
+        top: -130px;
+
+        @media screen and (max-width: 1200px) {
+          right: -40px;
+          top: -130px;
+        }
+
+        @media screen and (max-width: 767px) {
+          right: 0;
+        }
+      }
+
       .wave {
-        position: absolute;
         left: 0;
         right: 0;
         bottom: -1px;
@@ -105,6 +142,12 @@ body {
   border: none;
   gap: 8px;
   background-color: transparent;
+
+  @include transitioned;
+
+  &:hover {
+    transform: scale(1.04);
+  }
 
   @media screen and (max-width: 1600px) {
     height: 36px;
@@ -167,6 +210,16 @@ body {
   }
 
   &.sm {
+    height: 55px;
+
+    @media screen and (max-width: 1600px) {
+      height: 48px;
+    }
+
+    @media screen and (max-width: 767px) {
+      height: 40px;
+    }
+
     .btn-text {
       @media screen and (min-width: 1601px) {
         font-size: 16px;
@@ -250,6 +303,11 @@ h2 {
   font-size: 48px;
 
   @media screen and (max-width: 1600px) {
+    font-size: 30px;
+  }
+
+  @media screen and (max-width: 575px) {
+    font-size: 20px;
   }
 }
 
@@ -320,6 +378,15 @@ a {
   label {
     color: $color13;
     font-weight: 600;
+    font-size: 16px;
+
+    @media screen and (max-width: 991px) {
+      font-size: 12px;
+    }
+
+    @media screen and (max-width: 575px) {
+      font-size: 10px;
+    }
   }
 
   .input {
@@ -332,6 +399,15 @@ a {
       margin-top: 8px;
       border-radius: 8px;
       padding: 12px 20px;
+      font-size: 16px;
+
+      @media screen and (max-width: 991px) {
+        font-size: 12px;
+      }
+
+      @media screen and (max-width: 575px) {
+        font-size: 10px;
+      }
     }
 
     input {
@@ -343,6 +419,7 @@ a {
       right: 12px;
       top: 50%;
       transform: translateY(calc(-50% + 3px));
+      cursor: pointer;
     }
   }
 }
@@ -365,4 +442,86 @@ a {
     height: 300px;
     background: linear-gradient(to top, rgba(255, 255, 255, 0.323), #ffffff00);
   }
+}
+
+.custom-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .checkmark {
+    position: absolute;
+    left: 0;
+    height: 14px;
+    width: 14px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid $color14;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &:hover input ~ .checkmark {
+    background-color: #eaeaea;
+  }
+
+  input:checked ~ .checkmark {
+    background-color: $color3;
+    border-color: transparent;
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .checkmark:after {
+    left: 3px;
+    top: 1px;
+    width: 4px;
+    height: 6px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #eaeaea;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $color3;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba($color: $color3, $alpha: 0.8);
 }
