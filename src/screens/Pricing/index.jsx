@@ -32,14 +32,19 @@ const Pricing = () => {
   return (
     <MainLayout>
       <Section id="pricing" withBottomGrad>
-        <h3 className="text-center">Choose the plan that’s right for you</h3>
+        <h3 className="text-center main-title">
+          Choose the plan that’s right for you
+        </h3>
 
-        <GridContainer className="mt-60 cards" rowClassName="main-row">
+        <GridContainer
+          className="mt-60 cards"
+          rowClassName="main-row flex-xl-row flex-column align-items-center"
+        >
           {plansData.map((el, idx) => {
             const { active, price, per, plan, features } = el;
 
             return (
-              <div key={"card-" + idx} className="col-lg-4">
+              <div key={"card-" + idx} className="col-xl-4">
                 <div className={clsx("card", { active })}>
                   <div>
                     <div className="title">

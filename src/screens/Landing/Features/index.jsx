@@ -7,7 +7,7 @@ const Features = () => {
       <div className="page-container px-0">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-6 d-flex align-items-center">
+            <div className="col-md-6 d-flex align-items-center">
               <div>
                 <h3>Easy To Collaborate</h3>
                 <p>
@@ -18,18 +18,29 @@ const Features = () => {
                 </p>
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-md-6">
               <img
                 src="/assets/vectors/dots-2.svg"
                 alt="dots"
                 className="dots-img"
               />
-              <img src="/assets/imgs/feature-1.png" alt="feature" />
+              <div className="img-container">
+                <img
+                  className="d-lg-block d-md-none"
+                  src="/assets/imgs/feature-1.png"
+                  alt="feature"
+                />
+                <img
+                  className="d-lg-none d-md-block d-none"
+                  src="/assets/imgs/feature-1-sm.png"
+                  alt="feature"
+                />
+              </div>
             </div>
           </div>
 
           <div className="row">
-            <div className="col-lg-6 d-flex align-items-center">
+            <div className="col-md-6 d-flex align-items-center">
               <div>
                 <h3>Notebook Based Interface</h3>
                 <p>
@@ -38,18 +49,29 @@ const Features = () => {
                 </p>
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-md-6">
               <img
                 src="/assets/vectors/dots-2.svg"
                 alt="dots"
                 className="dots-img"
               />
-              <img src="/assets/imgs/feature-2.png" alt="feature" />
+              <div className="img-container">
+                <img
+                  className="d-lg-block d-md-none"
+                  src="/assets/imgs/feature-2.png"
+                  alt="feature"
+                />
+                <img
+                  className="d-lg-none d-md-block d-none"
+                  src="/assets/imgs/feature-2-sm.png"
+                  alt="feature"
+                />
+              </div>
             </div>
           </div>
 
           <div className="row">
-            <div className="col-lg-6 d-flex align-items-center">
+            <div className="col-md-6 d-flex align-items-center">
               <div>
                 <h3>Dataset Interface</h3>
                 <p>
@@ -60,18 +82,29 @@ const Features = () => {
                 </p>
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-md-6">
               <img
                 src="/assets/vectors/dots-2.svg"
                 alt="dots"
                 className="dots-img"
               />
-              <img src="/assets/imgs/feature-3.png" alt="feature" />
+              <div className="img-container">
+                <img
+                  className="d-lg-block d-md-none"
+                  src="/assets/imgs/feature-3.png"
+                  alt="feature"
+                />
+                <img
+                  className="d-lg-none d-md-block d-none"
+                  src="/assets/imgs/feature-3-sm.png"
+                  alt="feature"
+                />
+              </div>
             </div>
           </div>
 
           <div className="row">
-            <div className="col-lg-6 d-flex align-items-center">
+            <div className="col-md-6 d-flex align-items-center">
               <div>
                 <h3>Install Any Pyhton Packages</h3>
                 <p>
@@ -81,13 +114,24 @@ const Features = () => {
                 </p>
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-md-6">
               <img
                 src="/assets/vectors/dots-2.svg"
                 alt="dots"
                 className="dots-img"
               />
-              <img src="/assets/imgs/feature-4.png" alt="feature" />
+              <div className="img-container">
+                <img
+                  className="d-lg-block d-md-none"
+                  src="/assets/imgs/feature-4.png"
+                  alt="feature"
+                />
+                <img
+                  className="d-lg-none d-md-block d-none"
+                  src="/assets/imgs/feature-4-sm.png"
+                  alt="feature"
+                />
+              </div>
             </div>
           </div>
         </div>

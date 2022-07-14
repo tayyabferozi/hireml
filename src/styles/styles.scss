@@ -18,8 +18,16 @@
   z-index: 5;
 
   #navbar {
-    padding: 25px;
+    padding: 25px 0;
     background-color: #fff;
+
+    @media screen and (max-width: 1600px) {
+      padding: 22px 0;
+    }
+
+    @media screen and (max-width: 767px) {
+      padding: 15px 0;
+    }
 
     .navbar-main {
       display: flex;
@@ -30,6 +38,10 @@
         display: flex;
         align-items: center;
         gap: 60px;
+
+        @media screen and (max-width: 1600px) {
+          gap: 40px;
+        }
 
         a {
           color: $color1;
@@ -107,6 +119,44 @@
   position: relative;
   background-color: $color4;
 
+  @media screen and (max-width: 1600px) and (min-width: 992px) {
+    padding-top: 0px;
+    padding-bottom: 40px;
+  }
+
+  @media screen and (max-width: 1300px) and (min-width: 992px) {
+    padding-top: 30px;
+  }
+
+  @media screen and (max-width: 991px) {
+    padding-top: 70px;
+  }
+
+  @media screen and (max-width: 575px) {
+    padding-top: 60px;
+    padding-bottom: 66px;
+  }
+
+  .main-row {
+    --bs-gutter-y: 50px;
+
+    @media screen and (max-width: 575px) {
+      --bs-gutter-y: 36px;
+    }
+  }
+
+  .right-img {
+    @media screen and (max-width: 991px) {
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media screen and (max-width: 575px) {
+      max-width: 240px;
+    }
+  }
+
   .dots {
     position: absolute;
     left: -8px;
@@ -140,8 +190,17 @@
 
   .row {
     --bs-gutter-x: 110px;
+    --bs-gutter-y: 40px;
     margin-bottom: 100px;
     position: relative;
+
+    @media screen and (max-width: 1600px) {
+      --bs-gutter-x: 50px;
+    }
+
+    @media screen and (max-width: 991px) {
+      --bs-gutter-x: 30px;
+    }
 
     img {
       display: block;
@@ -154,7 +213,14 @@
       &.dots-img {
         position: absolute;
         top: -30px;
+
+        @media screen and (max-width: 991px) {
+          display: none;
+        }
       }
+    }
+
+    .img-container {
     }
 
     &:last-child {
@@ -212,6 +278,20 @@
 #pricing {
   padding: 80px;
 
+  .main-title {
+    @media screen and (max-width: 1600px) {
+      font-size: 32px;
+      max-width: 438px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media screen and (max-width: 1600px) {
+      font-size: 22px;
+      max-width: 270px;
+    }
+  }
+
   .main-row {
   }
 
@@ -222,19 +302,48 @@
     margin-right: auto;
 
     .card {
-      padding: 56px 50px;
+      padding: 56px 48px;
       min-height: 550px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       border-radius: 25px;
-      box-shadow: 0px 20px 180px 0px #0000000d;
+
+      @media screen and (max-width: 1600px) {
+      }
+
+      @media screen and (max-width: 1200px) {
+        max-width: 338px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @media screen and (max-width: 575px) {
+        padding-left: 34px;
+        padding-right: 34px;
+      }
 
       .title {
+        @media screen and (min-width: 1601px) {
+          font-size: 20px;
+        }
+
+        @media screen and (max-width: 575px) {
+          font-size: 14px;
+        }
+
         .price {
           font-size: 42px;
           color: $color3;
           font-weight: 700;
+
+          @media screen and (max-width: 1600px) {
+            font-size: 36px;
+          }
+
+          @media screen and (max-width: 575px) {
+            font-size: 30px;
+          }
         }
       }
 
@@ -245,6 +354,15 @@
           margin-bottom: 14px;
           padding-left: 26px;
           color: $color10;
+          font-size: 18px;
+
+          @media screen and (max-width: 1600px) {
+            font-size: 14px;
+          }
+
+          @media screen and (max-width: 575px) {
+            font-size: 12px;
+          }
 
           &::after {
             position: absolute;
@@ -259,10 +377,22 @@
       .btn {
         padding-left: 20px;
         padding-right: 20px;
+        height: 50px;
+
+        .btn-text {
+          font-size: 18px;
+        }
+
+        @media screen and (max-width: 1600px) {
+          .btn-text {
+            font-size: 14px;
+          }
+        }
       }
 
       &.active {
         background-color: #fff;
+        box-shadow: 0px 20px 180px 0px #0000000d;
 
         .btn {
           background-color: $color3;
@@ -315,6 +445,15 @@
   .main-row {
     --bs-gutter-x: 32px;
     --bs-gutter-y: 52px;
+
+    @media screen and (max-width: 767px) {
+      --bs-gutter-x: 48px;
+      --bs-gutter-y: 56px;
+    }
+
+    @media screen and (max-width: 575px) {
+      --bs-gutter-y: 36px;
+    }
   }
 
   .blog-cards {
@@ -331,16 +470,35 @@
 
       .card-body {
         background-color: #fff;
-        padding: 18px 26px;
+        padding: 18px 26px 30px;
         box-shadow: 0px 34px 80px 0px #0000000a;
 
         p {
           font-size: 14px;
           line-height: 1.5;
+
+          @media screen and (max-width: 1600px) {
+            font-size: 12px;
+          }
         }
 
         .btn {
           padding: 16px;
+          height: 50px;
+          padding-left: 12px;
+          padding-right: 12px;
+
+          @media screen and (max-width: 1600px) {
+            height: 44px;
+          }
+
+          .btn-text {
+            font-size: 16px;
+
+            @media screen and (max-width: 1600px) {
+              font-size: 14px;
+            }
+          }
 
           .btn-icon {
             margin-left: 24px;

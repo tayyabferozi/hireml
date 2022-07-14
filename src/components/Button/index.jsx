@@ -13,6 +13,8 @@ const Button = ({
   white,
   tranparent,
   shadowed,
+  lg,
+  sm,
   ...rest
 }) => {
   const classes = clsx(
@@ -22,7 +24,9 @@ const Button = ({
     primary && "btn-primary",
     white && "btn-white",
     tranparent && "btn-transparent",
-    shadowed && "shadowed"
+    shadowed && "shadowed",
+    lg && "lg",
+    sm && "sm"
   );
 
   let btnChilren = (
