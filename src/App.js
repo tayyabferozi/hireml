@@ -13,6 +13,10 @@ import Blogs from "./screens/Blogs";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import UpcomingInterview from "./screens/UpcomingInterview";
+import CompletedInterview from "./screens/CompletedInterview";
+import Datasets from "./screens/Datasets";
+import Team from "./screens/Team";
+import Account from "./screens/Account";
 
 const routesData = [
   {
@@ -42,6 +46,22 @@ const routesData = [
   {
     path: "/upcoming-interview",
     Component: UpcomingInterview,
+  },
+  {
+    path: "/completed-interviews",
+    Component: CompletedInterview,
+  },
+  {
+    path: "/datasets",
+    Component: Datasets,
+  },
+  {
+    path: "/team",
+    Component: Team,
+  },
+  {
+    path: "/account",
+    Component: Account,
   },
 ];
 

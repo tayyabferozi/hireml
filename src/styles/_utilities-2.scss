@@ -34,6 +34,16 @@
   }
 }
 
+@media screen and (max-width: 767px) {
+  .fs-767-14 {
+    font-size: 14px;
+  }
+
+  .fs-767-10 {
+    font-size: 10px;
+  }
+}
+
 @media screen and (max-width: 575px) {
   .fs-575-14 {
     font-size: 14px;

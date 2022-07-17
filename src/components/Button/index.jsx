@@ -9,10 +9,12 @@ const Button = ({
   children,
   icon,
   textClassName,
+  cyan,
   primary,
   white,
   tranparent,
   shadowed,
+  xlg,
   lg,
   sm,
   ...rest
@@ -21,10 +23,12 @@ const Button = ({
     "btn",
     className,
     forIcon && "btn-icon",
+    cyan && "btn-cyan",
     primary && "btn-primary",
     white && "btn-white",
     tranparent && "btn-transparent",
     shadowed && "shadowed",
+    xlg && "xlg",
     lg && "lg",
     sm && "sm"
   );

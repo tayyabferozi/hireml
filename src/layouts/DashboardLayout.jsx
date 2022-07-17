@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import $ from "jquery";
 import { Link, NavLink } from "react-router-dom";
-import Button from "../components/Button";
 
 const tabsData = [
   {
@@ -10,7 +10,7 @@ const tabsData = [
   },
   {
     icon: "/assets/vectors/nav-tab-2.svg",
-    link: "/completed-interview",
+    link: "/completed-interviews",
     title: "Completed Interview",
   },
   {
@@ -25,11 +25,24 @@ const tabsData = [
   },
 ];
 
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = ({ HeaderBtns, children }) => {
   const [currTab, setCurrTab] = useState({
     icon: "/assets/vectors/nav-tab-1.svg",
     link: "/upcoming-interview",
     title: "Upcoming Interview",
+  });
+
+  const toggleDropdown = () => {
+    $(".min-tabs .layout-tabs").toggleClass("active");
+    $(".min-tabs .list").slideToggle();
+  };
+
+  useEffect(() => {
+    tabsData.forEach((el, idx) => {
+      if (window.location.pathname.includes(el.link)) {
+        setCurrTab(tabsData[idx]);
+      }
+    });
   });
 
   return (
@@ -54,18 +67,26 @@ const DashboardLayout = ({ children }) => {
       <div className="layout-right">
         <div className="layout-head">
           <div className="head-left">
+            <Link to="/">
+              <h4 className="text-primary-1 title">Hireml</h4>
+            </Link>
+
             <div className="mb-3 greeting">Hello, Jane</div>
             <h2>Welcome Back!</h2>
 
             <div className="min-tabs">
               <div className="layout-tabs">
-                <div className="active-item">
+                <div className="active-item" onClick={toggleDropdown}>
                   <div className="left d-flex align-items-center gap-2">
                     <img src={currTab.icon} alt={currTab.title} />
                     <span className="fw-600">{currTab.title}</span>
                   </div>
                   <div className="right">
-                    <img src="/assets/vectors/chevron.svg" alt="chevron" />
+                    <img
+                      className="chevron"
+                      src="/assets/vectors/chevron.svg"
+                      alt="chevron"
+                    />
                   </div>
                 </div>
                 <div className="list">
@@ -73,7 +94,11 @@ const DashboardLayout = ({ children }) => {
                     const { icon, link, title } = el;
 
                     return (
-                      <NavLink key={"tab-item" + idx} to={link}>
+                      <NavLink
+                        key={"tab-item" + idx}
+                        to={link}
+                        onClick={toggleDropdown}
+                      >
                         <img src={icon} alt={title} /> {title}
                       </NavLink>
                     );
@@ -83,20 +108,10 @@ const DashboardLayout = ({ children }) => {
             </div>
           </div>
           <div className="head-right">
-            <div className="btns">
-              <Button
-                icon={{ src: "/assets/vectors/add.svg", title: "add" }}
-                primary
-              >
-                Add an interview
-              </Button>
-              <Button tranparent textClassName="text-light-1">
-                Start an instant interview
-              </Button>
-            </div>
-            <div className="user">
+            {HeaderBtns && <HeaderBtns />}
+            <Link to="/account" className="user">
               <img src="/assets/imgs/user.png" alt="user" />
-            </div>
+            </Link>
           </div>
         </div>
 
