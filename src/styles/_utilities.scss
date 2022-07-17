@@ -563,6 +563,12 @@ a {
   }
 }
 
+.d-1367-none {
+  @media screen and (min-width: 1367px) {
+    display: none !important;
+  }
+}
+
 .mt-1100-0 {
   @media screen and (max-width: 1100px) {
     margin-top: 0 !important;

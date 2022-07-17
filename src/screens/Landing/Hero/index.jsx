@@ -30,7 +30,7 @@ const Hero = () => {
               <Button lg primary shadowed className="me-30">
                 Sign Up
               </Button>
-              <Button lg white>
+              <Button lg white to="/upcoming-interview">
                 Try Now
               </Button>
             </div>

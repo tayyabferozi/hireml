@@ -67,7 +67,7 @@ const DashboardLayout = ({ HeaderBtns, children }) => {
       <div className="layout-right">
         <div className="layout-head">
           <div className="head-left">
-            <Link to="/">
+            <Link to="/" className="d-1367-none">
               <h4 className="text-primary-1 title">Hireml</h4>
             </Link>
 
