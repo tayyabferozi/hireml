@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Button from "../components/Button";
 
 const tabsData = [
@@ -29,7 +29,9 @@ const DashboardLayout = () => {
   return (
     <div className="dashboard-layout">
       <div className="layout-left">
-        <h3 className="text-primary-1 title text-center">Hireml</h3>
+        <Link to="/">
+          <h3 className="text-primary-1 title text-center">Hireml</h3>
+        </Link>
 
         <div className="layout-tabs">
           {tabsData.map((el, idx) => {
