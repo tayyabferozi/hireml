@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <div id="footer">
       <div className="footer-top">
-        <div className="logo">
+        <Link to="/" className="logo">
           <img src="/assets/vectors/logo.svg" alt="logo" />
-        </div>
+        </Link>
         <div className="links">
           <Link to="/">Home</Link>
           <Link to="/pricing">Price</Link>

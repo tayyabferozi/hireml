@@ -1,6 +1,6 @@
 @import "./colors";
-@import "./utilities";
 @import "./utilities-2";
+@import "./utilities";
 
 // ***********************************************************************************************************************************
 // ***********************************************************************************************************************************
@@ -18,8 +18,66 @@
   z-index: 5;
 
   #navbar {
-    padding: 25px;
+    position: relative;
+    padding: 25px 0;
     background-color: #fff;
+
+    @media screen and (max-width: 1600px) {
+      padding: 22px 0;
+    }
+
+    @media screen and (max-width: 767px) {
+      padding: 15px 0;
+    }
+
+    a {
+      @include transitioned;
+    }
+
+    .menu-bar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      border-radius: 0 0 20px 20px;
+      background-color: #fff;
+      top: 100%;
+
+      .close {
+        position: absolute;
+        top: 25px;
+        right: 60px;
+
+        @media screen and (max-width: 575px) {
+          right: 24px;
+          top: 10px;
+        }
+      }
+
+      a {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+
+        @media screen and (max-width: 1600px) {
+          padding-left: 45px;
+          padding-right: 45px;
+        }
+
+        @media screen and (max-width: 575px) {
+          padding-left: 9px;
+          padding-right: 9px;
+        }
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $color15;
+        }
+
+        &.active {
+          color: $color1;
+        }
+      }
+    }
 
     .navbar-main {
       display: flex;
@@ -31,10 +89,18 @@
         align-items: center;
         gap: 60px;
 
+        @media screen and (max-width: 1600px) {
+          gap: 40px;
+        }
+
+        @media screen and (max-width: 767px) {
+          gap: 30px;
+        }
+
         a {
           color: $color1;
 
-          &:not(.active):not(.btn) {
+          &:not(.active):not(.btn):not(:hover) {
             opacity: 0.3;
           }
 
@@ -55,9 +121,14 @@
 // ***********************************************************************************************************************************
 
 #footer {
+  position: relative;
   background-color: $color4;
   text-align: center;
   padding-top: 100px;
+
+  @media screen and (max-width: 767px) {
+    padding-top: 60px;
+  }
 
   .footer-top {
     display: flex;
@@ -66,12 +137,42 @@
     align-items: center;
     gap: 60px;
 
+    @media screen and (max-width: 991px) {
+      gap: 44px;
+    }
+
+    @media screen and (max-width: 575px) {
+      gap: 34px;
+    }
+
     .links {
       display: flex;
       gap: 40px;
 
+      @media screen and (max-width: 400px) {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      a {
+        @include transitioned;
+
+        &:hover {
+          color: $color3;
+        }
+      }
+
       * {
         color: $color1;
+        font-size: 18px;
+
+        @media screen and (max-width: 1600px) {
+          font-size: 14px;
+        }
+
+        @media screen and (max-width: 575px) {
+          font-size: 12px;
+        }
       }
     }
 
@@ -79,6 +180,14 @@
       * {
         color: $color3;
         font-size: 16px;
+
+        @media screen and (max-width: 991px) {
+          font-size: 12px;
+        }
+
+        @media screen and (max-width: 575px) {
+          font-size: 10px;
+        }
       }
     }
   }
@@ -92,6 +201,16 @@
     margin-left: auto;
     margin-right: auto;
     font-size: 16px;
+
+    @media screen and (max-width: 1600px) {
+      font-size: 12px;
+      padding-top: 22px;
+      padding-bottom: 10px;
+    }
+
+    @media screen and (max-width: 575px) {
+      font-size: 10px;
+    }
   }
 }
 
@@ -106,6 +225,44 @@
 #landing-hero {
   position: relative;
   background-color: $color4;
+
+  @media screen and (max-width: 1600px) and (min-width: 992px) {
+    padding-top: 0px;
+    padding-bottom: 40px;
+  }
+
+  @media screen and (max-width: 1300px) and (min-width: 992px) {
+    padding-top: 30px;
+  }
+
+  @media screen and (max-width: 991px) {
+    padding-top: 70px;
+  }
+
+  @media screen and (max-width: 575px) {
+    padding-top: 60px;
+    padding-bottom: 66px;
+  }
+
+  .main-row {
+    --bs-gutter-y: 50px;
+
+    @media screen and (max-width: 575px) {
+      --bs-gutter-y: 36px;
+    }
+  }
+
+  .right-img {
+    @media screen and (max-width: 991px) {
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media screen and (max-width: 575px) {
+      max-width: 240px;
+    }
+  }
 
   .dots {
     position: absolute;
@@ -123,6 +280,51 @@
 // ***********************************************************************************************************************************
 
 #landing-features {
+  position: relative;
+
+  .bg-feature-1,
+  .bg-feature-2,
+  .bg-feature-3,
+  .bg-feature-4,
+  .bg-feature-5,
+  .bg-feature-6 {
+    position: absolute;
+
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+  }
+
+  .bg-feature-1 {
+    left: 65px;
+    top: 60px;
+  }
+
+  .bg-feature-2 {
+    right: 30px;
+    top: 70px;
+  }
+
+  .bg-feature-3 {
+    left: 19px;
+    top: 642px;
+  }
+
+  .bg-feature-4 {
+    left: 0;
+    top: 1454px;
+  }
+
+  .bg-feature-5 {
+    left: 200px;
+    bottom: 130px;
+  }
+
+  .bg-feature-6 {
+    right: 150px;
+    bottom: -60px;
+  }
+
   h3 {
     padding-bottom: 30px;
     margin-bottom: 30px;
@@ -140,8 +342,17 @@
 
   .row {
     --bs-gutter-x: 110px;
+    --bs-gutter-y: 40px;
     margin-bottom: 100px;
     position: relative;
+
+    @media screen and (max-width: 1600px) {
+      --bs-gutter-x: 50px;
+    }
+
+    @media screen and (max-width: 991px) {
+      --bs-gutter-x: 30px;
+    }
 
     img {
       display: block;
@@ -154,7 +365,14 @@
       &.dots-img {
         position: absolute;
         top: -30px;
+
+        @media screen and (max-width: 991px) {
+          display: none;
+        }
       }
+    }
+
+    .img-container {
     }
 
     &:last-child {
@@ -212,6 +430,20 @@
 #pricing {
   padding: 80px;
 
+  .main-title {
+    @media screen and (max-width: 1600px) {
+      font-size: 32px;
+      max-width: 438px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media screen and (max-width: 1600px) {
+      font-size: 22px;
+      max-width: 270px;
+    }
+  }
+
   .main-row {
   }
 
@@ -222,19 +454,48 @@
     margin-right: auto;
 
     .card {
-      padding: 56px 50px;
+      padding: 56px 48px;
       min-height: 550px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       border-radius: 25px;
-      box-shadow: 0px 20px 180px 0px #0000000d;
+
+      @media screen and (max-width: 1600px) {
+      }
+
+      @media screen and (max-width: 1200px) {
+        max-width: 338px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @media screen and (max-width: 575px) {
+        padding-left: 34px;
+        padding-right: 34px;
+      }
 
       .title {
+        @media screen and (min-width: 1601px) {
+          font-size: 20px;
+        }
+
+        @media screen and (max-width: 575px) {
+          font-size: 14px;
+        }
+
         .price {
           font-size: 42px;
           color: $color3;
           font-weight: 700;
+
+          @media screen and (max-width: 1600px) {
+            font-size: 36px;
+          }
+
+          @media screen and (max-width: 575px) {
+            font-size: 30px;
+          }
         }
       }
 
@@ -245,6 +506,15 @@
           margin-bottom: 14px;
           padding-left: 26px;
           color: $color10;
+          font-size: 18px;
+
+          @media screen and (max-width: 1600px) {
+            font-size: 14px;
+          }
+
+          @media screen and (max-width: 575px) {
+            font-size: 12px;
+          }
 
           &::after {
             position: absolute;
@@ -259,10 +529,22 @@
       .btn {
         padding-left: 20px;
         padding-right: 20px;
+        height: 50px;
+
+        .btn-text {
+          font-size: 18px;
+        }
+
+        @media screen and (max-width: 1600px) {
+          .btn-text {
+            font-size: 14px;
+          }
+        }
       }
 
       &.active {
         background-color: #fff;
+        box-shadow: 0px 20px 180px 0px #0000000d;
 
         .btn {
           background-color: $color3;
@@ -300,6 +582,10 @@
     margin-left: auto;
     margin-right: auto;
     box-shadow: 0px 34px 80px 0px #0000000a;
+
+    @media screen and (max-width: 767px) {
+      padding: 60px 50px;
+    }
   }
 }
 
@@ -315,6 +601,15 @@
   .main-row {
     --bs-gutter-x: 32px;
     --bs-gutter-y: 52px;
+
+    @media screen and (max-width: 767px) {
+      --bs-gutter-x: 48px;
+      --bs-gutter-y: 56px;
+    }
+
+    @media screen and (max-width: 575px) {
+      --bs-gutter-y: 36px;
+    }
   }
 
   .blog-cards {
@@ -331,16 +626,35 @@
 
       .card-body {
         background-color: #fff;
-        padding: 18px 26px;
+        padding: 18px 26px 30px;
         box-shadow: 0px 34px 80px 0px #0000000a;
 
         p {
           font-size: 14px;
           line-height: 1.5;
+
+          @media screen and (max-width: 1600px) {
+            font-size: 12px;
+          }
         }
 
         .btn {
           padding: 16px;
+          height: 50px;
+          padding-left: 12px;
+          padding-right: 12px;
+
+          @media screen and (max-width: 1600px) {
+            height: 44px;
+          }
+
+          .btn-text {
+            font-size: 16px;
+
+            @media screen and (max-width: 1600px) {
+              font-size: 14px;
+            }
+          }
 
           .btn-icon {
             margin-left: 24px;
@@ -372,6 +686,20 @@
     margin-right: auto;
     background-color: #fff;
     box-shadow: 0px 20px 180px 0px #0000000d, 0px -5px 0px 0px #3a36db;
+
+    @media screen and (max-width: 991px) {
+      max-width: 470px;
+    }
+
+    h3 {
+      @media screen and (max-width: 1600px) {
+        font-size: 24px;
+      }
+
+      @media screen and (max-width: 575px) {
+        font-size: 18px;
+      }
+    }
 
     .btn.shadowed {
       height: 46px;
