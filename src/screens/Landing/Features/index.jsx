@@ -88,7 +88,7 @@ const Features = () => {
               <div className="img-container">
                 <img
                   className="d-lg-block d-md-none"
-                  src="/assets/imgs/feature-2.png"
+                  src="/assets/imgs/feature-2.jpeg"
                   alt="feature"
                 />
                 <img
@@ -121,7 +121,7 @@ const Features = () => {
               <div className="img-container">
                 <img
                   className="d-lg-block d-md-none"
-                  src="/assets/imgs/feature-3.png"
+                  src="/assets/imgs/feature-3.jpeg"
                   alt="feature"
                 />
                 <img
@@ -153,7 +153,7 @@ const Features = () => {
               <div className="img-container">
                 <img
                   className="d-lg-block d-md-none"
-                  src="/assets/imgs/feature-4.png"
+                  src="/assets/imgs/feature-4.jpeg"
                   alt="feature"
                 />
                 <img

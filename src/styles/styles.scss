@@ -360,6 +360,15 @@
       &:not(.dots-img) {
         position: relative;
         width: 100%;
+        border-radius: 20px;
+
+        @media screen and (max-width: 991px) {
+          border-radius: 12px;
+        }
+
+        @media screen and (max-width: 767px) {
+          border-radius: 8px;
+        }
       }
 
       &.dots-img {
