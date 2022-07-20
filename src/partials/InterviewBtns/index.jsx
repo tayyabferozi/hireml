@@ -4,12 +4,22 @@ import ScheduleInterview from "../../modals/ScheduleInterview";
 import Button from "../../components/Button";
 
 import useModal from "../../hooks/useModal";
+import SavedInterview from "../../modals/SavedInterview";
 
 const HeaderBtns = (props) => {
   const scheduleModalUtils = useModal(false);
+  const savedModalUtils = useModal(false);
+
   return (
     <>
-      <ScheduleInterview {...scheduleModalUtils} />
+      <ScheduleInterview
+        onComplete={() => {
+          scheduleModalUtils.toggleShow();
+          savedModalUtils.toggleShow();
+        }}
+        {...scheduleModalUtils}
+      />
+      <SavedInterview {...savedModalUtils} />
       <div className="btns">
         <Button
           textClassName="d-1100-none"

@@ -993,6 +993,12 @@
         @media screen and (max-width: 400px) {
           right: unset;
           left: 16px;
+
+          .dropdown {
+            right: unset !important;
+            left: 50%;
+            transform: translateX(-50%);
+          }
         }
 
         .user {
@@ -1347,6 +1353,26 @@
 
   .custom-modal {
     padding: 50px 70px;
+
+    @media screen and (max-width: 991px) {
+      padding-left: 42px;
+      padding-right: 42px;
+    }
+
+    @media screen and (max-width: 575px) {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+}
+
+.saved-interview {
+  text-align: center;
+  max-width: 560px;
+
+  .custom-modal {
+    padding-left: 50px;
+    padding-right: 50px;
 
     @media screen and (max-width: 991px) {
       padding-left: 42px;

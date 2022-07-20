@@ -7,7 +7,7 @@ import GridContainer from "../../components/GridContainer";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 
-const ScheduleInterview = ({ ...rest }) => {
+const ScheduleInterview = ({ onComplete, ...rest }) => {
   const [value, onChange] = useState(new Date());
 
   return (
@@ -37,7 +37,7 @@ const ScheduleInterview = ({ ...rest }) => {
         </GridContainer>
 
         <div className="d-flex justify-content-end mt-40">
-          <Button xlg primary>
+          <Button onClick={onComplete} xlg primary>
             Save Interview
           </Button>
         </div>
