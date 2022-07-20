@@ -5,7 +5,7 @@ import GridContainer from "../../components/GridContainer";
 import Input from "../../components/Input";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
-import HeaderBtns from "./HeaderBtns";
+import InterviewBtns from "../../partials/InterviewBtns";
 
 const data = [
   {
@@ -54,7 +54,7 @@ const data = [
 
 const UpcomingInterview = () => {
   return (
-    <DashboardLayout HeaderBtns={HeaderBtns}>
+    <DashboardLayout HeaderBtns={InterviewBtns}>
       <div className="card-lg">
         <h4 className="title">Invite your team members</h4>
 

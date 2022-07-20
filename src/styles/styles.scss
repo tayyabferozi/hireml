@@ -46,6 +46,7 @@
         position: absolute;
         top: 25px;
         right: 60px;
+        cursor: pointer;
 
         @media screen and (max-width: 575px) {
           right: 24px;
@@ -717,7 +718,6 @@
 
     label {
       color: $color1;
-      // font-size: 12px;
       margin-bottom: 16px;
     }
   }
@@ -739,6 +739,10 @@
 
   @media screen and (max-width: 1100px) {
     padding: 20px 12px;
+  }
+
+  @media screen and (max-width: 575px) {
+    height: unset;
   }
 
   .layout-left {
@@ -855,7 +859,7 @@
           }
 
           @media screen and (max-width: 1100px) {
-            margin-top: 70px;
+            margin-top: 30px;
           }
 
           @media screen and (max-width: 575px) {
@@ -872,7 +876,7 @@
             font-size: 36px;
           }
 
-          @media screen and (max-width: 575px) {
+          @media screen and (max-width: 768px) {
             font-size: 20px;
           }
         }
@@ -913,7 +917,7 @@
             height: 60px;
             cursor: pointer;
 
-            @media screen and (max-width: 575px) {
+            @media screen and (max-width: 768px) {
               padding: 10px 20px;
             }
 
@@ -924,7 +928,7 @@
             * {
               font-size: 18px;
 
-              @media screen and (max-width: 575px) {
+              @media screen and (max-width: 768px) {
                 font-size: 14px;
               }
             }
@@ -992,12 +996,66 @@
         }
 
         .user {
+          position: relative;
+
           img {
             border-radius: 50%;
             display: block;
+            cursor: pointer;
 
             @media screen and (max-width: 1100px) {
               width: 60px;
+            }
+          }
+
+          .dropdown-overlay {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 5;
+
+            &:not(.active) {
+              pointer-events: none;
+            }
+          }
+
+          .dropdown {
+            right: 0;
+            top: 100%;
+            position: absolute;
+            box-shadow: 0px 60px 109px 0px #0000004a;
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            display: none;
+            min-width: 180px;
+            z-index: 5;
+
+            .item {
+              font-size: 16px;
+              color: $color1;
+              font-weight: 600;
+              padding: 10px;
+              display: block;
+              text-align: center;
+              cursor: pointer;
+              border-bottom: 1px solid $color15;
+
+              @include transitioned;
+
+              &:last-child {
+                border-bottom: 0;
+              }
+
+              &:hover {
+                color: $color3;
+              }
+
+              @media screen and (max-width: 767px) {
+                font-size: 14px;
+              }
             }
           }
         }
@@ -1028,7 +1086,7 @@
       overflow-y: auto;
 
       @media screen and (max-width: 1100px) {
-        margin-top: 50px;
+        margin-top: 30px;
       }
 
       .card-lg {
@@ -1047,10 +1105,15 @@
           padding: 0;
         }
 
+        &.retain {
+          padding: 30px 50px;
+          border: 1px solid $color16;
+        }
+
         .title {
           font-size: 28px;
 
-          @media screen and (max-width: 992px) {
+          @media screen and (max-width: 1600px) {
             font-size: 24px;
           }
 
@@ -1086,6 +1149,10 @@
 
             @media screen and (max-width: 1100px) {
               padding: 20px;
+            }
+
+            @media screen and (max-width: 400px) {
+              padding: 20px 10px;
             }
 
             .cell-item {
@@ -1163,7 +1230,7 @@
         .custom-form-control {
           label {
             color: $color1;
-            font-size: 18px;
+            // font-size: 18px;
 
             @media screen and (max-width: 575px) {
               font-size: 14px;
@@ -1235,6 +1302,60 @@
           }
         }
       }
+    }
+  }
+}
+
+.interview-modal {
+  .custom-modal {
+    @media screen and (max-width: 991px) {
+      padding-left: 26px;
+      padding-right: 26px;
+    }
+
+    .title {
+      border-bottom: 1px solid $color15;
+      padding-bottom: 20px;
+    }
+
+    .react-calendar {
+      @media screen and (min-width: 992px) {
+        margin-top: 30px;
+      }
+    }
+  }
+}
+
+.upload-modal {
+  .custom-modal {
+    padding: 50px 0;
+
+    .upload-img {
+      @media screen and (max-width: 991px) {
+        width: 100px;
+      }
+
+      @media screen and (max-width: 575px) {
+        width: 66px;
+      }
+    }
+  }
+}
+
+.card-modal {
+  max-width: 680px;
+
+  .custom-modal {
+    padding: 50px 70px;
+
+    @media screen and (max-width: 991px) {
+      padding-left: 42px;
+      padding-right: 42px;
+    }
+
+    @media screen and (max-width: 575px) {
+      padding-left: 30px;
+      padding-right: 30px;
     }
   }
 }

@@ -25,7 +25,13 @@ const tabsData = [
   },
 ];
 
-const DashboardLayout = ({ HeaderBtns, children }) => {
+const DashboardLayout = ({
+  HeaderBtns,
+  btn1OnClick,
+  bt2OnClick,
+  withInterViewBtn,
+  children,
+}) => {
   const [currTab, setCurrTab] = useState({
     icon: "/assets/vectors/nav-tab-1.svg",
     link: "/upcoming-interview",
@@ -35,6 +41,11 @@ const DashboardLayout = ({ HeaderBtns, children }) => {
   const toggleDropdown = () => {
     $(".min-tabs .layout-tabs").toggleClass("active");
     $(".min-tabs .list").slideToggle();
+  };
+
+  const toggleMenu = () => {
+    $(".user .dropdown").slideToggle();
+    $(".user .dropdown-overlay").toggleClass("active");
   };
 
   useEffect(() => {
@@ -108,10 +119,29 @@ const DashboardLayout = ({ HeaderBtns, children }) => {
             </div>
           </div>
           <div className="head-right">
-            {HeaderBtns && <HeaderBtns />}
-            <Link to="/account" className="user">
-              <img src="/assets/imgs/user.png" alt="user" />
-            </Link>
+            {HeaderBtns && (
+              <HeaderBtns
+                btn1OnClick={btn1OnClick}
+                bt2OnClick={bt2OnClick}
+                withInterViewBtn={withInterViewBtn}
+              />
+            )}
+            <div className="user">
+              <img
+                src="/assets/imgs/user.png"
+                alt="user"
+                onClick={toggleMenu}
+              />
+
+              <div className="dropdown-overlay" onClick={toggleMenu} />
+
+              <div className="dropdown">
+                <Link to="/account" className="item">
+                  Account
+                </Link>
+                <div className="item">Logout</div>
+              </div>
+            </div>
           </div>
         </div>
 

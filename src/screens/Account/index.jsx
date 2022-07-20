@@ -8,6 +8,9 @@ import Input from "../../components/Input";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import HeaderBtns from "./HeaderBtns";
 
+import useModal from "../../hooks/useModal";
+import AddCard from "../../modals/AddCard";
+
 const data = [
   {
     card: "/assets/vectors/visa.svg",
@@ -54,115 +57,125 @@ const data = [
 ];
 
 const UpcomingInterview = () => {
+  const cardModalUtils = useModal(false);
+
   return (
-    <DashboardLayout HeaderBtns={HeaderBtns}>
-      <GridContainer>
-        <div className="col-xl-5">
-          <div className="card-lg">
-            <h4 className="title">Edit General Information</h4>
+    <>
+      <AddCard {...cardModalUtils} />
+      <DashboardLayout HeaderBtns={HeaderBtns}>
+        <GridContainer>
+          <div className="col-xl-5">
+            <div className="card-lg">
+              <h4 className="title">Edit General Information</h4>
 
-            <form className="mt-40" action="">
-              <GridContainer>
-                <div className="col-xl-12 col-lg-6">
-                  <Input label="Full Name" placeholder="John Doe" type="text" />
-                </div>
-                <div className="col-xl-12 col-lg-6">
-                  <Input
-                    label="Email"
-                    placeholder="johndoe@gmail.com"
-                    type="email"
-                  />
-                </div>
-                <div className="col-xl-12 col-lg-6">
-                  <Input
-                    label="Phone Number"
-                    placeholder="042-214-1214"
-                    type="tel"
-                  />
-                </div>
-                <div className="col-xl-12 col-lg-6">
-                  <Input
-                    label="Company Name"
-                    placeholder="Federal Express"
-                    type="text"
-                  />
-                </div>
-              </GridContainer>
-            </form>
-          </div>
-          <div className="card-lg mt-70">
-            <h4 className="title">Edit General Information</h4>
+              <form className="mt-40" action="">
+                <GridContainer>
+                  <div className="col-xl-12 col-lg-6">
+                    <Input
+                      label="Full Name"
+                      placeholder="John Doe"
+                      type="text"
+                    />
+                  </div>
+                  <div className="col-xl-12 col-lg-6">
+                    <Input
+                      label="Email"
+                      placeholder="johndoe@gmail.com"
+                      type="email"
+                    />
+                  </div>
+                  <div className="col-xl-12 col-lg-6">
+                    <Input
+                      label="Phone Number"
+                      placeholder="042-214-1214"
+                      type="tel"
+                    />
+                  </div>
+                  <div className="col-xl-12 col-lg-6">
+                    <Input
+                      label="Company Name"
+                      placeholder="Federal Express"
+                      type="text"
+                    />
+                  </div>
+                </GridContainer>
+              </form>
+            </div>
+            <div className="card-lg retain mt-70 mt-767-40 mt-575-30">
+              <h4 className="title">Edit General Information</h4>
 
-            <div className="mt-30">
-              <div className="fw-600 text-dark-1">
-                Do you want to change your password?{" "}
-                <Link to="#0" className="highlight">
-                  Click Here
-                </Link>
+              <div className="mt-30 mt-575-10">
+                <div className="fw-600 text-dark-1 fs-1600-16 fs-575-10">
+                  Do you want to change your password?{" "}
+                  <Link to="#0" className="highlight">
+                    Click Here
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="col-xl-7">
-          <div className="card-lg">
-            <div className="d-flex flex-wrap gap-4 align-items-center justify-content-between">
-              <h4 className="title">Payment Information</h4>
-              <Button
-                xlg
-                cyan
-                icon={{ src: "/assets/vectors/add.svg", title: "add" }}
-              >
-                Add a Card
+          <div className="col-xl-7">
+            <div className="card-lg">
+              <div className="d-flex flex-wrap gap-4 align-items-center justify-content-between">
+                <h4 className="title">Payment Information</h4>
+                <Button
+                  xlg
+                  cyan
+                  icon={{ src: "/assets/vectors/add.svg", title: "add" }}
+                  onClick={cardModalUtils.toggleShow}
+                >
+                  Add a Card
+                </Button>
+              </div>
+
+              <div className="mt-50">
+                {data.map((el, idx) => {
+                  const { card, cardName, subTitle, tagText } = el;
+
+                  return (
+                    <div className="payment-item" key={"item" + idx}>
+                      <div className="left d-flex align-items-center gap-4">
+                        <img src={card} alt={cardName} />
+                        <div className="text">
+                          <div className="fs-20 fs-1600-18 fs-767-14 fw-600 text-dark-1">
+                            {cardName}
+                          </div>
+                          <div className="text-primary-1 fs-1600-14 fs-767-10">
+                            {subTitle}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="right">
+                        <div
+                          className={clsx(
+                            "tag",
+                            tagText === "Primary" ? "blue" : "green"
+                          )}
+                        >
+                          {tagText}
+                        </div>
+
+                        <div className="btns">
+                          <img src="/assets/vectors/pencil.svg" alt="edit" />
+                          <img src="/assets/vectors/bin.svg" alt="delete" />
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="d-flex justify-content-end mt-50">
+              <Button primary xlg>
+                Save Changes
               </Button>
             </div>
-
-            <div className="mt-50">
-              {data.map((el, idx) => {
-                const { card, cardName, subTitle, tagText } = el;
-
-                return (
-                  <div className="payment-item" key={"item" + idx}>
-                    <div className="left d-flex align-items-center gap-4">
-                      <img src={card} alt={cardName} />
-                      <div className="text">
-                        <div className="fs-20 fs-767-14 fw-600 text-dark-1">
-                          {cardName}
-                        </div>
-                        <div className="text-primary-1 fs-767-10">
-                          {subTitle}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="right">
-                      <div
-                        className={clsx(
-                          "tag",
-                          tagText === "Primary" ? "blue" : "green"
-                        )}
-                      >
-                        {tagText}
-                      </div>
-
-                      <div className="btns">
-                        <img src="/assets/vectors/pencil.svg" alt="edit" />
-                        <img src="/assets/vectors/bin.svg" alt="delete" />
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
-
-          <div className="d-flex justify-content-end mt-50">
-            <Button primary xlg>
-              Save Changes
-            </Button>
-          </div>
-        </div>
-      </GridContainer>
-    </DashboardLayout>
+        </GridContainer>
+      </DashboardLayout>
+    </>
   );
 };
 

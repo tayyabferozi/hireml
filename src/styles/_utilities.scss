@@ -390,6 +390,7 @@ a {
   }
 }
 
+.react-datepicker__input-container,
 .custom-form-control {
   label {
     color: $color13;
@@ -407,45 +408,47 @@ a {
 
   .input {
     position: relative;
+  }
 
-    input,
-    textarea {
-      border: 1px solid $color14;
-      width: 100%;
-      margin-top: 8px;
-      border-radius: 8px;
-      padding: 12px 20px;
-      font-size: 16px;
+  input,
+  textarea {
+    border: 1px solid $color14;
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
 
-      &::placeholder {
-        color: $color2;
-      }
+    @include transitioned;
 
-      @media screen and (max-width: 991px) {
-        font-size: 12px;
-      }
-
-      @media screen and (max-width: 575px) {
-        font-size: 10px;
-      }
-
-      &:focus {
-        border-color: $color3 !important;
-        color: $color3;
-      }
+    &::placeholder {
+      color: $color2;
     }
 
-    input {
-      height: 48px;
+    @media screen and (max-width: 991px) {
+      font-size: 12px;
     }
 
-    .icon {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(calc(-50% + 3px));
-      cursor: pointer;
+    @media screen and (max-width: 575px) {
+      font-size: 10px;
     }
+
+    &:focus {
+      border-color: $color3 !important;
+      color: $color3;
+    }
+  }
+
+  input {
+    height: 48px;
+  }
+
+  .icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(calc(-50% + 3px));
+    cursor: pointer;
   }
 }
 
@@ -585,4 +588,327 @@ a {
 
 input {
   outline: none !important;
+}
+
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba($color: #000000, $alpha: 0.6);
+  z-index: 6;
+  opacity: 0;
+  pointer-events: none;
+
+  @include transitioned;
+
+  &.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.custom-modal-wrap {
+  padding: 20px 0;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-50% + 16px));
+  background-color: #fff;
+  max-width: 854px;
+  z-index: 6;
+  border-radius: 20px;
+  width: 90%;
+  box-shadow: 0px 60px 109px 0px #0000004a;
+  opacity: 0;
+  pointer-events: none;
+
+  @include transitioned;
+
+  &.show {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.custom-modal {
+  padding: 10px 40px;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+
+  .modal-main {
+  }
+
+  .close {
+    position: absolute;
+    right: 40px;
+    top: 30px;
+    cursor: pointer;
+    z-index: 1;
+
+    @media screen and (max-width: 575px) {
+      right: 20px;
+    }
+
+    img {
+      display: block;
+
+      @media screen and (max-width: 991px) {
+        width: 24px;
+      }
+
+      @media screen and (max-width: 575px) {
+        width: 18px;
+      }
+    }
+  }
+
+  .custom-form-control {
+    margin-bottom: 20px;
+  }
+
+  .input {
+    position: relative;
+
+    .icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(calc(-50% + 3px));
+    }
+  }
+
+  label {
+    color: $color1;
+    font-weight: 600;
+    margin-bottom: 12px;
+
+    @media screen and (max-width: 1600px) {
+      font-size: 14px;
+    }
+
+    @media screen and (max-width: 575px) {
+      font-size: 12px;
+    }
+  }
+}
+
+.react-calendar {
+  border: 1px solid $color15 !important;
+  border-radius: 10px;
+  overflow: hidden;
+
+  &,
+  * {
+    color: $color1;
+  }
+
+  .react-calendar__tile--hasActive {
+    background: $color3;
+
+    &,
+    * {
+      color: #fff;
+    }
+  }
+
+  .react-calendar__tile--hasActive:enabled:hover,
+  .react-calendar__tile--hasActive:enabled:focus {
+    background: $color3;
+    opacity: 0.9;
+  }
+  .react-calendar__navigation__label {
+    &,
+    * {
+      font-weight: bold;
+    }
+  }
+
+  .react-calendar__tile:not(.react-calendar__tile--hasActive):enabled:hover {
+    // .react-calendar__tile:enabled:focus {
+    background: transparent;
+
+    opacity: 0.8;
+  }
+
+  .react-calendar__tile.react-calendar__tile--active.react-calendar__tile--range.react-calendar__tile--rangeStart.react-calendar__tile--rangeEnd.react-calendar__tile--rangeBothEnds.react-calendar__month-view__days__day {
+    background: transparent;
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: "";
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
+      background-color: $color3;
+      border-radius: 50%;
+    }
+
+    & > * {
+      position: relative;
+    }
+
+    * {
+      color: #fff;
+    }
+  }
+
+  .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__month-view__days__day--neighboringMonth {
+    opacity: 0;
+  }
+
+  .react-calendar__month-view__weekdays__weekday {
+    &,
+    * {
+      font-size: 12px;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+  }
+}
+
+.dropzone {
+  cursor: pointer;
+}
+
+.custom-select-container {
+  position: relative;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 1px solid $color14;
+  z-index: 2;
+  margin-top: 8px;
+
+  .dual-valued {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .selected-text {
+    position: relative;
+    padding: 11.5px 16px;
+    cursor: pointer;
+    // color: $color1;
+    font-size: 16px;
+    height: 48px;
+    align-items: center;
+    display: flex;
+
+    @media screen and (max-width: 991px) {
+      font-size: 12px;
+    }
+
+    @media screen and (max-width: 575px) {
+      font-size: 10px;
+    }
+
+    &.added {
+      color: $color1;
+      font-weight: 600;
+    }
+
+    &::after {
+      content: url(../assets/chevron.svg);
+      // content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(calc(-50% + 1px));
+      right: 16px;
+      // border: 7px solid transparent;
+      // border-color: black transparent transparent transparent;
+
+      @include transitioned;
+    }
+
+    &.active {
+      &::after {
+        transform: translateY(calc(-50% - 2px)) rotateX(180deg);
+      }
+    }
+
+    .dual-valued {
+      padding-right: 40px;
+    }
+  }
+
+  & ul {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid $color14;
+
+    input {
+      color: $color1 !important;
+      border-radius: 4px !important;
+      width: calc(100% - 32px) !important;
+      margin: 8px auto;
+    }
+  }
+
+  .select-options {
+    position: absolute;
+    margin-top: 1px;
+    width: 100%;
+    border-radius: 4px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    left: 0;
+    z-index: 1;
+    max-height: 100px;
+
+    // @include has-scrollbar;
+  }
+
+  li {
+    &,
+    * {
+      color: $color1 !important;
+      font-size: 16px;
+    }
+
+    list-style-type: none;
+    padding: 8px 20px;
+    cursor: pointer;
+    background: #fff;
+    border-bottom: 1px solid $color14;
+    margin: 0;
+
+    @include transitioned;
+  }
+
+  li:last-child {
+    border-bottom: none;
+  }
+
+  li:hover {
+    background: rgba($color: $color11, $alpha: 0.5);
+  }
+
+  .show-dropdown-options {
+    // min-height: 170px;
+    opacity: 1;
+    visibility: visible;
+    display: block;
+  }
+
+  .hide-dropdown-options {
+    min-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+  }
+}
+
+.react-datepicker-wrapper {
+  .icon {
+    pointer-events: none;
+  }
 }

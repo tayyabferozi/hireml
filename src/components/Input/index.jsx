@@ -10,6 +10,7 @@ const Input = ({
   type = "text",
   label,
   placeholder,
+  icon,
   ...rest
 }) => {
   const [showPwd, setShowPwd] = useState(false);
@@ -27,7 +28,7 @@ const Input = ({
         setTypeState("password");
       }
     } else {
-      setTypeState("text");
+      setTypeState(type);
     }
   }, [type, setTypeState, showPwd]);
 
@@ -39,6 +40,7 @@ const Input = ({
         </label>
       )}
       <div className="input">
+        {icon && <img className="icon" src={icon.src} alt={icon.alt} />}
         {type === "password" && (
           <img
             onClick={() => setShowPwd((prevState) => !prevState)}

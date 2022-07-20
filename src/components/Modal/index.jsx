@@ -1,40 +1,22 @@
 import React, { useEffect } from "react";
 import $ from "jquery";
 import clsx from "clsx";
-// import { useNavigate } from "react-router-dom";
 
 const Modal = ({
   noOverlay,
-  noClose,
-  closeLightDark,
-  closeDarkSm,
-  lower,
   show,
-  crossNavHome,
   toggleShow,
-  lgClose,
-  greyClose,
   className,
   children,
   onClose,
   ...rest
 }) => {
-  // const navigate = useNavigate();
-
   const closeHandler = () => {
     if (onClose) {
       onClose();
     }
 
-    if (crossNavHome) {
-      toggleShow();
-      window.history.pushState(null, "", "/en/");
-      // setTimeout(function () {
-      //   navigate("/en");
-      // }, 400);
-    } else {
-      toggleShow();
-    }
+    toggleShow();
   };
 
   useEffect(() => {
@@ -51,39 +33,17 @@ const Modal = ({
     <>
       {!noOverlay && (
         <div
-          className={clsx("modal-overlay", { show, lower })}
+          className={clsx("modal-overlay", { show })}
           onClick={closeHandler}
         />
       )}
-      <div
-        className={clsx("custom-modal", className, { show, lower })}
-        {...rest}
-      >
-        {!noClose && (
+      <div className={clsx("custom-modal-wrap", className, { show })} {...rest}>
+        <div className={clsx("custom-modal")}>
           <div className="close" onClick={closeHandler}>
-            {closeDarkSm && (
-              <img
-                className="d-block d-lg-none"
-                alt="close"
-                title="close"
-                src="/assets/vectors/close-modal-dark.svg"
-              />
-            )}
-            <img
-              className={clsx(closeDarkSm && "d-sm-block d-none")}
-              src={`/assets/vectors/${
-                lgClose
-                  ? "close-modal-lg"
-                  : greyClose
-                  ? "close-modal-grey"
-                  : "close-modal"
-              }.svg`}
-              alt="close"
-              title="Close modal"
-            />
+            <img src="/assets/vectors/modal-close.svg" alt="close" />
           </div>
-        )}
-        {children}
+          {children}
+        </div>
       </div>
     </>
   );
