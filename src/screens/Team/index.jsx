@@ -1,8 +1,11 @@
 import clsx from "clsx";
 import React from "react";
+
 import Button from "../../components/Button";
 import GridContainer from "../../components/GridContainer";
 import Input from "../../components/Input";
+import Select from "../../components/Select/select";
+import Option from "../../components/Select/option";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
 import InterviewBtns from "../../partials/InterviewBtns";
@@ -62,8 +65,13 @@ const UpcomingInterview = () => {
           <div className="col-lg-5 col-md-8">
             <Input label="Email" placeholder="johndoe@gmail.com" type="email" />
           </div>
-          <div className="col-lg-3 col-md-4"></div>
-          <div className="col">
+          <div className="col-lg-3 col-md-4">
+            <Select label="Role" placeholder="Select Role">
+              <Option value="Developer">Developer</Option>
+              <Option value="Designer">Designer</Option>
+            </Select>
+          </div>
+          <div className="col d-flex align-items-end">
             <Button
               style={{ minHeight: 50 }}
               className="px-30"

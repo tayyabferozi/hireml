@@ -418,11 +418,14 @@ a {
     border-radius: 8px;
     padding: 12px 20px;
     font-size: 16px;
+    color: #06152b;
+    font-weight: 600;
 
     @include transitioned;
 
     &::placeholder {
       color: $color2;
+      font-weight: 400;
     }
 
     @media screen and (max-width: 991px) {
