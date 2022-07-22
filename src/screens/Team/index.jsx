@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import clsx from "clsx";
 
 import Button from "../../components/Button";
@@ -36,6 +36,21 @@ const UpcomingInterview = () => {
     });
   };
 
+  const loadList = useCallback(() => {
+    setIsListLoading(true);
+
+    axios
+      .get(`/team?email=${userState.email}`)
+      .then((res) => {
+        setTeamState(res.data.teams);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Uh Oh! Something went wrong");
+      })
+      .finally(() => setIsListLoading(false));
+  }, [userState.email]);
+
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -46,6 +61,7 @@ const UpcomingInterview = () => {
       .then((res) => {
         setFormState({ invited_user_email: "", role: "" });
         toast.success("Invitation sent successfully");
+        loadList();
       })
       .catch((err) => {
         console.log(err);
@@ -59,18 +75,8 @@ const UpcomingInterview = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`/team?email=${userState.email}`)
-      .then((res) => {
-        console.log(res.data.teams);
-        setTeamState(res.data.teams);
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Uh Oh! Something went wrong");
-      })
-      .finally(() => setIsListLoading(false));
-  }, [userState.email]);
+    loadList();
+  }, [loadList]);
 
   useEffect(() => {
     setFormState((prevState) => {

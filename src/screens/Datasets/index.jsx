@@ -16,6 +16,17 @@ const Datasets = () => {
   const datasetModalUtils = useModal(false);
   const userState = useSelector((state) => state.user);
 
+  const fileOpenHandler = (filename) => {
+    axios
+      .get(`/datasets/{filename}?email=${userState.email}&filename=${filename}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        toast.error("Uh Oh! Something went wrong while fetching the file.");
+      });
+  };
+
   useEffect(() => {
     setIsLoading(true);
 
@@ -68,7 +79,10 @@ const Datasets = () => {
                       <div className="cell-item">
                         <div className="left">Name</div>
                         <div className="right">
-                          <div className="d-flex align-items-center gap-2">
+                          <div
+                            className="d-flex align-items-center gap-2 c-pointer"
+                            onClick={() => fileOpenHandler(filename)}
+                          >
                             <img src="/assets/vectors/file.svg" alt="file" />{" "}
                             <span className="text-primary-1">{filename}</span>
                           </div>

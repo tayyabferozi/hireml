@@ -11,7 +11,7 @@ import InterviewBtns from "../../partials/InterviewBtns";
 import useModal from "../../hooks/useModal";
 import AddCard from "../../modals/AddCard";
 import axios from "axios";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 
@@ -90,9 +90,10 @@ const UpcomingInterview = () => {
         setFormState(res.data.user);
       })
       .catch((err) => {
-        toast.error(
-          "Uh Oh! Something went wrong while fetching your information"
-        );
+        console.log(err);
+        // toast.error(
+        //   "Uh Oh! Something went wrong while fetching your information"
+        // );
       })
       .finally(() => setIsFormLoading(false));
   }, [userState]);
@@ -107,7 +108,8 @@ const UpcomingInterview = () => {
         setCardList(res.data.cards);
       })
       .catch((err) => {
-        toast.error("Uh Oh! Something went wrong while fetching cards");
+        console.log(err);
+        // toast.error("Uh Oh! Something went wrong while fetching cards");
       })
       .finally(() => setIsCardListLoading(false));
   }, [userState]);
