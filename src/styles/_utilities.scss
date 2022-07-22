@@ -257,6 +257,11 @@ body {
     &.shadowed {
       box-shadow: 0px 55px 84px 0px rgba($color3, 0.19);
     }
+
+    .lds-hourglass:after {
+      border: 14px solid #fff;
+      border-color: #fff transparent #fff transparent;
+    }
   }
 
   &.btn-white {
@@ -452,6 +457,23 @@ a {
     top: 50%;
     transform: translateY(calc(-50% + 3px));
     cursor: pointer;
+  }
+
+  &.has-error {
+    input,
+    textarea,
+    .custom-select-container {
+      border-color: $color8 !important;
+    }
+  }
+}
+
+.helper-text {
+  font-size: 12px;
+  margin-top: 4px;
+
+  &.error {
+    color: $color8;
   }
 }
 
@@ -914,4 +936,78 @@ input {
   .icon {
     pointer-events: none;
   }
+}
+
+.lds-hourglass {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+
+  &:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 14px solid $color3;
+    border-color: $color3 transparent $color3 transparent;
+    animation: lds-hourglass 1.2s infinite;
+  }
+
+  &.lg {
+    width: 80px;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:after {
+      border-width: 32px;
+    }
+  }
+}
+@keyframes lds-hourglass {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    transform: rotate(1800deg);
+  }
+}
+
+.Toastify__toast-body {
+  * {
+    font-size: 12px;
+  }
+}
+
+.react-time-picker__wrapper {
+  height: 48px;
+  border: 1px solid #c3cad9;
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 8px;
+  padding: 12px 20px;
+
+  * {
+    font-size: 16px;
+    color: #06152b;
+    font-weight: 600;
+  }
+}
+
+.c-pointer {
+  cursor: pointer;
+}
+
+.react-datepicker__month-container {
+  z-index: 2;
+  background-color: #fff;
 }

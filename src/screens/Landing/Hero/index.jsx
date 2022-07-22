@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 import Section from "../../../components/Section";
 import GridContainer from "../../../components/GridContainer";
 import Button from "../../../components/Button";
+import Loader from "../../../components/Loader";
 
 const Hero = () => {
+  const [isLoadingState, setIsLoadingState] = useState(false);
+
+  const tryItHandler = (e) => {
+    e.preventDefault();
+
+    setIsLoadingState(true);
+
+    axios
+      .post("/notebook/start")
+      .then((res) => {
+        console.log(res.data);
+        window.location.href = res.data.url;
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        toast.error("Uh Oh! Something went wrong.");
+      })
+      .finally(() => {
+        setIsLoadingState(false);
+      });
+  };
+
   return (
     <Section id="landing-hero">
       <img
@@ -27,11 +52,12 @@ const Hero = () => {
             </p>
 
             <div className="d-flex align-items-center mt-50 mt-575-30">
-              <Button lg primary shadowed className="me-30">
+              <Button to="/register" lg primary shadowed className="me-30">
                 Sign Up
               </Button>
-              <Button lg white to="/upcoming-interview">
-                Try Now
+              {/* <Button lg white to="/upcoming-interview"> */}
+              <Button lg white onClick={tryItHandler}>
+                {isLoadingState ? <Loader /> : <>Try Now</>}
               </Button>
             </div>
           </div>

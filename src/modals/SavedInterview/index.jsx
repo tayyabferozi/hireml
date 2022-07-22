@@ -11,7 +11,7 @@ const SavedInterview = ({ ...rest }) => {
         The invitation has been sent to candidate and the interview has been
         scheduled.
       </p>
-      <Button className="mt-30" xlg primary>
+      <Button onClick={rest.toggleShow} className="mt-30" xlg primary>
         Go To Home
       </Button>
     </Modal>

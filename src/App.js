@@ -17,8 +17,11 @@ import CompletedInterview from "./screens/CompletedInterview";
 import Datasets from "./screens/Datasets";
 import Team from "./screens/Team";
 import Account from "./screens/Account";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { checkAuthState } from "./store/actions/userActions";
 
-const routesData = [
+const generalRoutes = [
   {
     path: "/",
     Component: Landing,
@@ -35,6 +38,9 @@ const routesData = [
     path: "/blogs",
     Component: Blogs,
   },
+];
+
+const openRoutes = [
   {
     path: "/login",
     Component: Login,
@@ -43,6 +49,9 @@ const routesData = [
     path: "/register",
     Component: Register,
   },
+];
+
+const protectedRoutes = [
   {
     path: "/upcoming-interview",
     Component: UpcomingInterview,
@@ -66,23 +75,57 @@ const routesData = [
 ];
 
 function App() {
+  const dispatch = useDispatch();
+  const userState = useSelector((state) => state.user);
+  const [routesData, setRoutesData] = useState([]);
+
+  useEffect(() => {
+    dispatch(checkAuthState());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (userState.access_token) {
+      setRoutesData([...protectedRoutes]);
+    } else {
+      setRoutesData([...openRoutes]);
+    }
+  }, [userState]);
+
   return (
     <Router>
       <ScrollToTop />
       <Routes>
+        {generalRoutes.map((el, idx) => {
+          const { path, Component, ...rest } = el;
+
+          return (
+            <Route
+              key={"route-item-" + el.path + idx}
+              path={"/" + path}
+              element={<Component {...rest} />}
+            />
+          );
+        })}
         {routesData.map((el, idx) => {
           const { path, Component, ...rest } = el;
 
           return (
             <Route
-              key={"route-item-" + idx}
+              key={"route-item-" + el.path + idx}
               path={"/" + path}
               element={<Component {...rest} />}
             />
           );
         })}
 
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route
+          path="*"
+          element={
+            <Navigate
+              to={userState.access_token ? "/upcoming-interview" : "/"}
+            />
+          }
+        />
       </Routes>
     </Router>
   );

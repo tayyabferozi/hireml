@@ -1,14 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 import ScheduleInterview from "../../modals/ScheduleInterview";
 import Button from "../../components/Button";
 
 import useModal from "../../hooks/useModal";
 import SavedInterview from "../../modals/SavedInterview";
+import { toast } from "react-toastify";
+import Loader from "../../components/Loader";
 
 const HeaderBtns = (props) => {
+  const [isLoading, setIsLoading] = useState(false);
   const scheduleModalUtils = useModal(false);
   const savedModalUtils = useModal(false);
+  const userState = useSelector((state) => state.user);
+
+  const startInstantInterviewHandler = (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+
+    axios
+      .post(`/interviews/start-instant-interviews?email=${userState.email}`)
+      .then((res) => {
+        console.log(res.data);
+        toast.success("Interview started successfully!");
+        window.open(res.data.url, "_blank").focus();
+      })
+      .catch((err) => {
+        toast.error("Uh Oh! Something went wrong while starting your meeting");
+      })
+      .finally(() => setIsLoading(false));
+  };
 
   return (
     <>
@@ -32,14 +56,14 @@ const HeaderBtns = (props) => {
         <Button
           tranparent
           textClassName="text-light-1 d-1100-none"
-          onClick={props.btn2OnClick}
+          onClick={startInstantInterviewHandler}
           icon={{
             className: "d-1101-none",
             src: "/assets/vectors/camera.svg",
             title: "meeting",
           }}
         >
-          Start an instant interview
+          {isLoading ? <Loader /> : "Start an instant interview"}
         </Button>
       </div>
     </>

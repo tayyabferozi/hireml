@@ -19,6 +19,8 @@ const Select = React.forwardRef(
       defaultValue2,
       placeholder,
       onChange,
+      onSelectChange,
+      errMsg,
       ...rest
     },
     ref
@@ -48,8 +50,39 @@ const Select = React.forwardRef(
       if (onChange) {
         onChange();
       }
+      if (selectElRef) {
+        const input = selectElRef.current;
+        const descriptor = Object.getOwnPropertyDescriptor(
+          Object.getPrototypeOf(input),
+          "value"
+        );
+
+        Object.defineProperty(input, "value", {
+          configurable: true,
+          set: function (t) {
+            let anotherThis = { ...this };
+            anotherThis.name = rest.name;
+            anotherThis.value = arguments[0];
+            if (rest.name !== "undefined" && arguments[0] !== undefined) {
+              onSelectChange({ target: anotherThis });
+            }
+            return descriptor.set.apply(this, arguments);
+          },
+          get: function () {
+            return descriptor.get.apply(this);
+          },
+        });
+      }
       selectElRef.current.value = val;
     };
+
+    useEffect(() => {
+      setSelectedOption(defaultValue);
+    }, [defaultValue]);
+
+    useEffect(() => {
+      selectElRef.current.value = selectedOption;
+    }, [selectedOption, selectElRef]);
 
     useEffect(() => {
       const $list = $(listRef.current);
@@ -76,7 +109,13 @@ const Select = React.forwardRef(
           onChange: onInputChange,
         }}
       >
-        <select className="d-none" ref={selectElRef} id={id} {...rest}>
+        <select
+          className="d-none my-own-hidden-select"
+          ref={selectElRef}
+          id={id}
+          {...rest}
+          onChange={onSelectChange}
+        >
           <option value="">Choose</option>
           {!isEmpty(children) &&
             children.length > 0 &&
@@ -91,19 +130,24 @@ const Select = React.forwardRef(
               );
             })}
         </select>
-        <div ref={ref} className={clsx(rootClassName, "custom-form-control")}>
+        <div
+          ref={ref}
+          className={clsx(rootClassName, "custom-form-control", {
+            "has-error": errMsg,
+          })}
+        >
           {label && <label htmlFor={id}>{label}</label>}
           <div className="custom-select-container" ref={selectContainerRef}>
             <div
               className={clsx(
                 "selected-text",
                 showDropdown && "active",
-                selectedOption.length > 0 && "added"
+                !isEmpty(selectedOption) && "added"
               )}
               onClick={showDropdownHandler}
             >
-              {selectedOption.length > 0 ? (
-                selectedOption2.length > 0 ? (
+              {!isEmpty(selectedOption) ? (
+                !isEmpty(selectedOption2) > 0 ? (
                   <div className="dual-valued">
                     <div>{selectedOption}</div>
                     <div>{selectedOption2}</div>
@@ -135,6 +179,7 @@ const Select = React.forwardRef(
               {children}
             </ul>
           </div>
+          {errMsg && <div className="helper-text error">{errMsg}</div>}
         </div>
       </SelectContext.Provider>
     );

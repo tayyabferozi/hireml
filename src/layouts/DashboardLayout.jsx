@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import $ from "jquery";
 import { Link, NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../store/actions/userActions";
 
 const tabsData = [
   {
@@ -37,6 +39,7 @@ const DashboardLayout = ({
     link: "/upcoming-interview",
     title: "Upcoming Interview",
   });
+  const dispatch = useDispatch();
 
   const toggleDropdown = () => {
     $(".min-tabs .layout-tabs").toggleClass("active");
@@ -46,6 +49,10 @@ const DashboardLayout = ({
   const toggleMenu = () => {
     $(".user .dropdown").slideToggle();
     $(".user .dropdown-overlay").toggleClass("active");
+  };
+
+  const logoutHandler = () => {
+    dispatch(logoutUser());
   };
 
   useEffect(() => {
@@ -139,7 +146,9 @@ const DashboardLayout = ({
                 <Link to="/account" className="item">
                   Account
                 </Link>
-                <div className="item">Logout</div>
+                <div className="item" onClick={logoutHandler}>
+                  Logout
+                </div>
               </div>
             </div>
           </div>

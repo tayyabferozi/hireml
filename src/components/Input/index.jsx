@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 
 const Input = ({
+  errMsg,
   textarea,
   id,
   inputClassName,
@@ -33,7 +34,11 @@ const Input = ({
   }, [type, setTypeState, showPwd]);
 
   return (
-    <div className={clsx("custom-form-control", className)}>
+    <div
+      className={clsx("custom-form-control", className, {
+        "has-error": errMsg,
+      })}
+    >
       {label && (
         <label className={clsx(labelClassName)} htmlFor={id}>
           {label}
@@ -61,6 +66,7 @@ const Input = ({
             {...rest}
           />
         )}
+        {errMsg && <div className="helper-text error">{errMsg}</div>}
       </div>
     </div>
   );
