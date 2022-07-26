@@ -29,6 +29,7 @@ const tabsData = [
 
 const DashboardLayout = ({
   HeaderBtns,
+  btn1OnComplete,
   btn1OnClick,
   bt2OnClick,
   withInterViewBtn,
@@ -128,6 +129,7 @@ const DashboardLayout = ({
           <div className="head-right">
             {HeaderBtns && (
               <HeaderBtns
+                btn1OnComplete={btn1OnComplete}
                 btn1OnClick={btn1OnClick}
                 bt2OnClick={bt2OnClick}
                 withInterViewBtn={withInterViewBtn}

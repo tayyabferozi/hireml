@@ -18,8 +18,7 @@ const Hero = () => {
     axios
       .post("/notebook/start")
       .then((res) => {
-        console.log(res.data);
-        window.location.href = res.data.url;
+        window.open(res.data.url, "_blank").focus();
       })
       .catch((err) => {
         console.log(err.response.data);

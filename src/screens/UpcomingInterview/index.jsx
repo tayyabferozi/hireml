@@ -91,7 +91,7 @@ const UpcomingInterview = () => {
 
   return (
     <>
-      <DashboardLayout HeaderBtns={InterviewBtns}>
+      <DashboardLayout btn1OnComplete={updateList} HeaderBtns={InterviewBtns}>
         <div className="card-lg">
           <h4 className="title d-1100-none">Upcoming Interviews</h4>
 

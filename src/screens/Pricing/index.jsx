@@ -25,7 +25,7 @@ const Pricing = () => {
       .catch((err) => {
         toast.error("Uh Oh! Something went wrong.");
       })
-      .catch(() => setIsLoading(false));
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (

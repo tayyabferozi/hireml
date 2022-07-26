@@ -14,17 +14,19 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader";
 
+const intialFormState = {
+  email: "",
+  candidate_email: "",
+  status: 2,
+  candidate_name: "",
+  interview_timestamp: "",
+  date: new Date(),
+  time: "12:00",
+};
+
 const ScheduleInterview = ({ onComplete, ...rest }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [formState, setFormState] = useState({
-    email: "",
-    candidate_email: "",
-    status: 2,
-    candidate_name: "",
-    interview_timestamp: "",
-    date: new Date(),
-    time: "12:00",
-  });
+  const [formState, setFormState] = useState(intialFormState);
   const { email } = useSelector((state) => state.user);
 
   function formateDateTime(d, t) {
@@ -84,6 +86,7 @@ const ScheduleInterview = ({ onComplete, ...rest }) => {
       .post("/interviews", formState)
       .then((res) => {
         onComplete();
+        setFormState(intialFormState);
       })
       .catch((err) => {
         try {
@@ -146,6 +149,7 @@ const ScheduleInterview = ({ onComplete, ...rest }) => {
 
             <div className="col-lg-6">
               <Calendar
+                minDate={new Date()}
                 onChange={(e) => inputChangeHandler(e, "date")}
                 value={formState.date}
               />

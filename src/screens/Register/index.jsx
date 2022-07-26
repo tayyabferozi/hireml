@@ -8,6 +8,7 @@ import Input from "../../components/Input";
 import Section from "../../components/Section";
 import MainLayout from "../../layouts/MainLayout";
 import Loader from "../../components/Loader";
+import isEmpty from "../../utils/is-empty";
 
 const initialFormState = {
   email: "",
@@ -43,13 +44,44 @@ const Register = () => {
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
+    setErrState(initialErrorState);
+
+    if (isEmpty(formState.company_name)) {
+      setErrState((prevState) => {
+        return { ...prevState, company_name: "The field can not be blank." };
+      });
+
+      return;
+    }
+
+    if (
+      !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(
+        formState.phone_number
+      )
+    ) {
+      setErrState((prevState) => {
+        return {
+          ...prevState,
+          phone_number: (
+            <>
+              Invalid Phone number <br /> Valid Formats: (123) 456-7890;
+              (123)456-7890; 123-456-7890; 123.456.7890; 1234567890;
+              +31636363634; 075-63546725;
+            </>
+          ),
+        };
+      });
+
+      return;
+    }
+
     if (!document.querySelector("#policy").checked) {
       toast.error("You must agree the terms of services");
       return;
     }
 
     setIsLoading(true);
-    setErrState(initialErrorState);
+
     axios
       .post("/users", formState)
       .then((res) => {
@@ -118,7 +150,7 @@ const Register = () => {
                 value={formState.company_name}
                 className="mt-34"
                 label="Company Name"
-                errMsg={errState.password}
+                errMsg={errState.company_name}
               />
               <Input
                 name="password"

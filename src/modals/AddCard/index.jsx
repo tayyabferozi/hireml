@@ -22,7 +22,7 @@ const initialFormState = {
   last_digit: "",
 };
 
-const AddCard = ({ ...rest }) => {
+const AddCard = ({ onComplete, ...rest }) => {
   const [startDate, setStartDate] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [formState, setFormState] = useState(initialFormState);
@@ -63,9 +63,9 @@ const AddCard = ({ ...rest }) => {
         `/cards/add-card-info?email=${userState.email}&card_id=${userState.card_id}&last_digit=${formState.last_digit}`
       )
       .then((res) => {
-        console.log(res.data);
         setFormState(initialFormState);
         toast.success("Card added successfully!");
+        onComplete();
       })
       .catch((err) => {
         console.log(err.response.data);

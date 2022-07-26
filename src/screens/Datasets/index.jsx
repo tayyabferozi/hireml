@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -27,7 +27,7 @@ const Datasets = () => {
       });
   };
 
-  useEffect(() => {
+  const loadList = useCallback(() => {
     setIsLoading(true);
 
     axios
@@ -44,6 +44,10 @@ const Datasets = () => {
         setIsLoading(false);
       });
   }, [userState]);
+
+  useEffect(() => {
+    loadList();
+  }, [loadList]);
 
   return (
     <>

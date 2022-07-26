@@ -10,7 +10,7 @@ import SavedInterview from "../../modals/SavedInterview";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader";
 
-const HeaderBtns = (props) => {
+const HeaderBtns = ({ btn1OnComplete }) => {
   const [isLoading, setIsLoading] = useState(false);
   const scheduleModalUtils = useModal(false);
   const savedModalUtils = useModal(false);
@@ -40,6 +40,7 @@ const HeaderBtns = (props) => {
         onComplete={() => {
           scheduleModalUtils.toggleShow();
           savedModalUtils.toggleShow();
+          btn1OnComplete();
         }}
         {...scheduleModalUtils}
       />

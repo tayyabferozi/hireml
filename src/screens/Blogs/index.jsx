@@ -1,7 +1,10 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 import Button from "../../components/Button";
 import GridContainer from "../../components/GridContainer";
+import Loader from "../../components/Loader";
 import Section from "../../components/Section";
 import MainLayout from "../../layouts/MainLayout";
 
@@ -69,6 +72,24 @@ const blogsData = [
 ];
 
 const Blogs = () => {
+  const [isLoading, setisLoading] = useState(false);
+  const [blogsState, setBlogsState] = useState([]);
+
+  useEffect(() => {
+    setisLoading(true);
+
+    axios
+      .get("/blog")
+      .then((res) => {
+        setBlogsState(res.data.blogs);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        toast.error("Uh Oh! Something went wrong.");
+      })
+      .finally(() => setisLoading(false));
+  }, []);
+
   return (
     <MainLayout>
       <Section id="blogs" fancy withBottomGrad>
@@ -76,42 +97,52 @@ const Blogs = () => {
           <h2>Blogs</h2>
         </div>
 
-        <div className="blog-cards mt-50">
-          <GridContainer rowClassName="main-row">
-            {blogsData.map((el, idx) => {
-              const { img, title, body } = el;
+        {isLoading ? (
+          <div className="text-center mt-50">
+            <Loader />
+          </div>
+        ) : (
+          <div className="blog-cards mt-50">
+            <GridContainer rowClassName="main-row">
+              {blogsState.map((el, idx) => {
+                const {
+                  img = "/assets/imgs/blog-img.png",
+                  title,
+                  Description,
+                } = el;
 
-              return (
-                <div
-                  key={"blog-item" + idx}
-                  className="col-xxl-3 col-lg-4 col-md-6"
-                >
-                  <div className="card">
-                    <div className="card-img">
-                      <img className="d-block" src={img} alt={title} />
-                    </div>
-                    <div className="card-body">
-                      <div className="fs-20 fw-600 text-dark-1 mb-10">
-                        {title}
+                return (
+                  <div
+                    key={"blog-item" + idx}
+                    className="col-xxl-3 col-lg-4 col-md-6"
+                  >
+                    <div className="card">
+                      <div className="card-img">
+                        <img className="d-block" src={img} alt={title} />
                       </div>
-                      <p className="">{body}</p>
-                      <Button
-                        className="rev mt-3"
-                        primary
-                        icon={{
-                          src: "/assets/vectors/chevron-right-white.svg",
-                          alt: "chevron",
-                        }}
-                      >
-                        Read More
-                      </Button>
+                      <div className="card-body">
+                        <div className="fs-20 fw-600 text-dark-1 mb-10">
+                          {title}
+                        </div>
+                        <p className="">{Description}</p>
+                        <Button
+                          className="rev mt-3"
+                          primary
+                          icon={{
+                            src: "/assets/vectors/chevron-right-white.svg",
+                            alt: "chevron",
+                          }}
+                        >
+                          Read More
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </GridContainer>
-        </div>
+                );
+              })}
+            </GridContainer>
+          </div>
+        )}
       </Section>
     </MainLayout>
   );

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import GridContainer from "../../components/GridContainer";
@@ -81,6 +81,22 @@ const UpcomingInterview = () => {
     });
   };
 
+  const addCardCompleteHandler = useCallback(() => {
+    setIsCardListLoading(true);
+
+    axios
+      .get(`/cards/get-user-cards?email=${userState.email}`)
+      .then((res) => {
+        console.log(res.data);
+        setCardList(res.data.cards);
+      })
+      .catch((err) => {
+        console.log(err);
+        // toast.error("Uh Oh! Something went wrong while fetching cards");
+      })
+      .finally(() => setIsCardListLoading(false));
+  }, [userState]);
+
   useEffect(() => {
     setIsFormLoading(true);
 
@@ -99,24 +115,12 @@ const UpcomingInterview = () => {
   }, [userState]);
 
   useEffect(() => {
-    setIsCardListLoading(true);
-
-    axios
-      .get(`/cards/get-user-cards?email=${userState.email}`)
-      .then((res) => {
-        console.log(res.data);
-        setCardList(res.data.cards);
-      })
-      .catch((err) => {
-        console.log(err);
-        // toast.error("Uh Oh! Something went wrong while fetching cards");
-      })
-      .finally(() => setIsCardListLoading(false));
-  }, [userState]);
+    addCardCompleteHandler();
+  }, [addCardCompleteHandler]);
 
   return (
     <>
-      <AddCard {...cardModalUtils} />
+      <AddCard onComplete={addCardCompleteHandler} {...cardModalUtils} />
       <DashboardLayout HeaderBtns={InterviewBtns}>
         <GridContainer>
           <div className="col-xl-5">
@@ -175,7 +179,7 @@ const UpcomingInterview = () => {
               )}
             </div>
             <div className="card-lg retain mt-70 mt-767-40 mt-575-30">
-              <h4 className="title">Edit General Information</h4>
+              <h4 className="title">Change Password</h4>
 
               <div className="mt-30 mt-575-10">
                 <div className="fw-600 text-dark-1 fs-1600-16 fs-575-10">
