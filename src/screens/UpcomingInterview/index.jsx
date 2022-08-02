@@ -117,7 +117,9 @@ const UpcomingInterview = () => {
                     interview_id,
                     candidate_name,
                     email,
-                    interview_timestamp,
+                    interview_date,
+                    start_time,
+                    start_period,
                     created_at,
                     started,
                   } = el;
@@ -160,8 +162,9 @@ const UpcomingInterview = () => {
                       <div className="cell-item">
                         <div className="left">Interview Date</div>
                         <div className="right">
-                          {new Date(interview_timestamp).toLocaleTimeString()}{" "}
-                          {new Date(interview_timestamp).toLocaleDateString()}
+                          {interview_date} {start_time + start_period}
+                          {/* {new Date(interview_timestamp).toLocaleTimeString()}{" "}
+                          {new Date(interview_timestamp).toLocaleDateString()} */}
                         </div>
                       </div>
                       <div className="cell-item">

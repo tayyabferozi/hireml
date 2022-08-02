@@ -6,13 +6,11 @@
 // };
 
 // export default Loader;
-import clsx from "clsx";
-import React from "react";
 
 const Loader = ({ lg }) => {
   return (
-    <div class="loadingio-spinner-spin-652ufucf3q8">
-      <div class="ldio-f1oz5qkn5bh">
+    <div className="loadingio-spinner-spin-652ufucf3q8">
+      <div className="ldio-f1oz5qkn5bh">
         <div>
           <div></div>
         </div>

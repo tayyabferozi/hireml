@@ -106,6 +106,7 @@ const Blogs = () => {
             <GridContainer rowClassName="main-row">
               {blogsState.map((el, idx) => {
                 const {
+                  id,
                   img = "/assets/imgs/blog-img.png",
                   title,
                   Description,
@@ -126,6 +127,7 @@ const Blogs = () => {
                         </div>
                         <p className="">{Description}</p>
                         <Button
+                          to={`/blog/${id}`}
                           className="rev mt-3"
                           primary
                           icon={{

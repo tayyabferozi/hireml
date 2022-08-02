@@ -1138,9 +1138,10 @@ input {
     border: 1px solid $color14;
 
     input {
+      display: block;
       color: $color1 !important;
       border-radius: 4px !important;
-      width: calc(100% - 32px) !important;
+      width: calc(100% - 12px) !important;
       margin: 8px auto;
     }
   }
@@ -1155,6 +1156,10 @@ input {
     left: 0;
     z-index: 1;
     max-height: 100px;
+
+    &.with-search {
+      max-height: 150px;
+    }
 
     // @include has-scrollbar;
   }
@@ -1277,4 +1282,12 @@ input {
 .react-datepicker__month-container {
   z-index: 2;
   background-color: #fff;
+}
+
+.c-pointer {
+  cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
 }

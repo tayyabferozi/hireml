@@ -53,7 +53,7 @@ const UpcomingInterview = () => {
         <h4 className="title d-1100-none">Completed Interviews</h4>
 
         {isLoading ? (
-          <div lg className="text-center">
+          <div className="text-center">
             <Loader lg />
           </div>
         ) : (
@@ -73,7 +73,10 @@ const UpcomingInterview = () => {
                   interview_id,
                   candidate_name,
                   email,
-                  interview_timestamp,
+
+                  interview_date,
+                  start_time,
+                  start_period,
                 } = el;
 
                 return (
@@ -101,8 +104,9 @@ const UpcomingInterview = () => {
                     <div className="cell-item">
                       <div className="left">Interview Date</div>
                       <div className="right">
-                        {new Date(interview_timestamp).toLocaleTimeString()}{" "}
-                        {new Date(interview_timestamp).toLocaleDateString()}
+                        {interview_date} {start_time + start_period}
+                        {/* {new Date(interview_timestamp).toLocaleTimeString()}{" "}
+                        {new Date(interview_timestamp).toLocaleDateString()} */}
                       </div>
                     </div>
                   </div>

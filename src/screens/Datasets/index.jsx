@@ -51,10 +51,11 @@ const Datasets = () => {
 
   return (
     <>
-      <AddDataset {...datasetModalUtils} />
+      <AddDataset onComplete={loadList} {...datasetModalUtils} />
       <DashboardLayout
         HeaderBtns={HeaderBtns}
         btn1OnClick={datasetModalUtils.toggleShow}
+        btn1OnComplete={loadList}
       >
         <div className="card-lg">
           <h4 className="title d-1100-none">Dataset</h4>

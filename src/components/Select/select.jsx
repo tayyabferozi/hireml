@@ -160,11 +160,12 @@ const Select = React.forwardRef(
               )}
             </div>
             <ul
-              className={
+              className={clsx(
                 showDropdown
                   ? "select-options show-dropdown-options"
-                  : "select-options hide-dropdown-options"
-              }
+                  : "select-options hide-dropdown-options",
+                { "with-search": withSearch }
+              )}
               ref={listRef}
             >
               {withSearch && (

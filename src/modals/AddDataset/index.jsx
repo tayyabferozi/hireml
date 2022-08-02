@@ -9,7 +9,7 @@ import Modal from "../../components/Modal";
 import isEmpty from "../../utils/is-empty";
 import { useSelector } from "react-redux";
 
-const AddDataset = ({ ...rest }) => {
+const AddDataset = ({ onComplete, ...rest }) => {
   const userState = useSelector((state) => state.user);
   const [isLoading, setIsLoading] = useState(false);
   const [formState, setFormState] = useState({
@@ -46,6 +46,7 @@ const AddDataset = ({ ...rest }) => {
       .then((res) => {
         console.log(res.data);
         toast.success("Files uploaded successfully!");
+        onComplete();
       })
       .catch((err) => {
         console.log(err);

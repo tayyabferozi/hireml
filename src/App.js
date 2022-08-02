@@ -10,6 +10,7 @@ import Landing from "./screens/Landing";
 import Pricing from "./screens/Pricing";
 import Support from "./screens/Support";
 import Blogs from "./screens/Blogs";
+import Blog from "./screens/Blog";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import UpcomingInterview from "./screens/UpcomingInterview";
@@ -22,6 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkAuthState } from "./store/actions/userActions";
 import TOS from "./screens/TOS";
 import isEmpty from "./utils/is-empty";
+import ChangePassword from "./screens/ChangePassword";
 
 const generalRoutes = [
   {
@@ -39,6 +41,10 @@ const generalRoutes = [
   {
     path: "/blogs",
     Component: Blogs,
+  },
+  {
+    path: "/blog/:id",
+    Component: Blog,
   },
   {
     path: "/tos",
@@ -77,6 +83,10 @@ const protectedRoutes = [
   {
     path: "/account",
     Component: Account,
+  },
+  {
+    path: "/change-password",
+    Component: ChangePassword,
   },
 ];
 

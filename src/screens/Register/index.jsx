@@ -159,6 +159,7 @@ const Register = () => {
                 className="mt-34"
                 label="Password"
                 type="password"
+                errMsg={errState.password}
               />
               <Input
                 name="confirm_password"
@@ -173,11 +174,11 @@ const Register = () => {
 
             <label className="custom-checkbox mt-10">
               I agree with the{" "}
-              <Link to="#0" className="highlight">
+              <Link to="/tos" className="highlight">
                 terms of services
               </Link>{" "}
               &amp;{" "}
-              <Link to="#0" className="highlight">
+              <Link to="/tos" className="highlight">
                 privacy policy
               </Link>{" "}
               of the website
