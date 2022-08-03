@@ -40,6 +40,8 @@ const AddCard = ({ onComplete, ...rest }) => {
     });
   };
 
+  console.log(formState);
+
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -57,10 +59,12 @@ const AddCard = ({ onComplete, ...rest }) => {
       return;
     }
 
+    console.log(formState);
+
     axios
       .post(
         // `/cards/add-card-info`
-        `/cards/add-card-info?email=${userState.email}&card_id=${userState.card_id}&last_digit=${formState.last_digit}`
+        `/cards/add-card-info?email=${userState.email}&card_id=${formState.card_id}&last_digit=${formState.last_digit}`
       )
       .then((res) => {
         setFormState(initialFormState);

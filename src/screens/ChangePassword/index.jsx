@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
 import Loader from "../../components/Loader";
@@ -23,8 +22,6 @@ const ChangePassword = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [formState, setFormState] = useState(initialFormState);
   const [errState, setErrState] = useState(initialErrorState);
-
-  const userState = useSelector((state) => state.user);
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
