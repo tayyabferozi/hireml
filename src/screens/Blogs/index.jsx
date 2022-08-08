@@ -8,68 +8,68 @@ import Loader from "../../components/Loader";
 import Section from "../../components/Section";
 import MainLayout from "../../layouts/MainLayout";
 
-const blogsData = [
-  {
-    img: "/assets/imgs/blog-img.png",
-    title: "Top 5 SaaS Businesses",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
-  },
-  {
-    img: "/assets/imgs/blog-img.png",
-    title: "Top 5 SaaS Businesses",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
-  },
-  {
-    img: "/assets/imgs/blog-img.png",
-    title: "Top 5 SaaS Businesses",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
-  },
-  {
-    img: "/assets/imgs/blog-img.png",
-    title: "Top 5 SaaS Businesses",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
-  },
-  {
-    img: "/assets/imgs/blog-img.png",
-    title: "Top 5 SaaS Businesses",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
-  },
-  {
-    img: "/assets/imgs/blog-img.png",
-    title: "Top 5 SaaS Businesses",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
-  },
-  {
-    img: "/assets/imgs/blog-img.png",
-    title: "Top 5 SaaS Businesses",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
-  },
-  {
-    img: "/assets/imgs/blog-img.png",
-    title: "Top 5 SaaS Businesses",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
-  },
-  {
-    img: "/assets/imgs/blog-img.png",
-    title: "Top 5 SaaS Businesses",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
-  },
-  {
-    img: "/assets/imgs/blog-img.png",
-    title: "Top 5 SaaS Businesses",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
-  },
-  {
-    img: "/assets/imgs/blog-img.png",
-    title: "Top 5 SaaS Businesses",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
-  },
-  {
-    img: "/assets/imgs/blog-img.png",
-    title: "Top 5 SaaS Businesses",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
-  },
-];
+// const blogsData = [
+//   {
+//     img: "/assets/imgs/blog-img.png",
+//     title: "Top 5 SaaS Businesses",
+//     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
+//   },
+//   {
+//     img: "/assets/imgs/blog-img.png",
+//     title: "Top 5 SaaS Businesses",
+//     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
+//   },
+//   {
+//     img: "/assets/imgs/blog-img.png",
+//     title: "Top 5 SaaS Businesses",
+//     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
+//   },
+//   {
+//     img: "/assets/imgs/blog-img.png",
+//     title: "Top 5 SaaS Businesses",
+//     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
+//   },
+//   {
+//     img: "/assets/imgs/blog-img.png",
+//     title: "Top 5 SaaS Businesses",
+//     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
+//   },
+//   {
+//     img: "/assets/imgs/blog-img.png",
+//     title: "Top 5 SaaS Businesses",
+//     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
+//   },
+//   {
+//     img: "/assets/imgs/blog-img.png",
+//     title: "Top 5 SaaS Businesses",
+//     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
+//   },
+//   {
+//     img: "/assets/imgs/blog-img.png",
+//     title: "Top 5 SaaS Businesses",
+//     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
+//   },
+//   {
+//     img: "/assets/imgs/blog-img.png",
+//     title: "Top 5 SaaS Businesses",
+//     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
+//   },
+//   {
+//     img: "/assets/imgs/blog-img.png",
+//     title: "Top 5 SaaS Businesses",
+//     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
+//   },
+//   {
+//     img: "/assets/imgs/blog-img.png",
+//     title: "Top 5 SaaS Businesses",
+//     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
+//   },
+//   {
+//     img: "/assets/imgs/blog-img.png",
+//     title: "Top 5 SaaS Businesses",
+//     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et ut mattis sociis non in. Sed non in",
+//   },
+// ];
 
 const Blogs = () => {
   const [isLoading, setisLoading] = useState(false);
