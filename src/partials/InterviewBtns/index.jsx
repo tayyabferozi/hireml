@@ -9,6 +9,7 @@ import useModal from "../../hooks/useModal";
 import SavedInterview from "../../modals/SavedInterview";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader";
+import clsx from "clsx";
 
 const HeaderBtns = ({ btn1OnComplete }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -56,15 +57,18 @@ const HeaderBtns = ({ btn1OnComplete }) => {
         </Button>
         <Button
           tranparent
-          textClassName="text-light-1 d-1100-none"
+          textClassName="text-light-1"
           onClick={startInstantInterviewHandler}
           icon={{
-            className: "d-1101-none",
+            className: clsx(isLoading && "o-0", "d-1101-none"),
             src: "/assets/vectors/camera.svg",
             title: "meeting",
           }}
         >
-          {isLoading ? <Loader /> : "Start an instant interview"}
+          <span className={clsx(isLoading && "o-0", "d-1100-none")}>
+            Start an instant interview
+          </span>
+          {isLoading && <Loader className="ab-loader blue-loader md" />}
         </Button>
       </div>
     </>

@@ -61,11 +61,11 @@ const AddDataset = ({ onComplete, ...rest }) => {
           } else if (typeof err?.response?.data?.detail === "string") {
             toast.error(err?.response?.data?.detail);
           } else {
-            toast.error("Uh Oh! Something went wrong.");
+            toast.error("Uh Oh! Something went wrong while adding the dataset");
           }
         } catch (err) {
           console.log(err);
-          toast.error("Uh Oh! Something went wrong.");
+          toast.error("Uh Oh! Something went wrong while adding the dataset");
         }
       })
       .finally(() => {

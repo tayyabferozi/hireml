@@ -107,7 +107,7 @@ const Register = () => {
             }
           }
         } else {
-          toast.error("Uh Oh! Something went wrong.");
+          toast.error("Uh Oh! Something went wrong registering you in");
         }
       })
       .finally(() => {

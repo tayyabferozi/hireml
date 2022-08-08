@@ -69,7 +69,7 @@ const Login = () => {
             }
           }
         } else {
-          toast.error("Uh Oh! Something went wrong.");
+          toast.error("Uh Oh! Something went wrong loggin you in");
         }
       })
       .finally(() => setIsLoading(false));
@@ -98,7 +98,7 @@ const Login = () => {
         if (err?.response?.data?.detail) {
           toast.error(err?.response?.data?.detail);
         } else {
-          toast.error("Something went wrong!");
+          toast.error("Something went wrong while resetting your password");
         }
       })
       .finally(() => setIsLoading(false));

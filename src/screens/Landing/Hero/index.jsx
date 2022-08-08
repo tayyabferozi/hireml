@@ -22,7 +22,9 @@ const Hero = () => {
       })
       .catch((err) => {
         console.log(err.response.data);
-        toast.error("Uh Oh! Something went wrong.");
+        toast.error(
+          "Uh Oh! Something went wrong while opening the test notebook"
+        );
       })
       .finally(() => {
         setIsLoadingState(false);

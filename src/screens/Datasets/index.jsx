@@ -18,9 +18,13 @@ const Datasets = () => {
 
   const fileOpenHandler = (filename) => {
     axios
-      .get(`/datasets/{filename}?email=${userState.email}&filename=${filename}`)
+      .get(`/datasets/${filename}?email=${userState.email}`)
       .then((res) => {
         console.log(res);
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += res.data;
+        let encodedUri = encodeURI(csvContent);
+        window.open(encodedUri, "_blank").focus();
       })
       .catch((err) => {
         toast.error("Uh Oh! Something went wrong while fetching the file.");
@@ -33,12 +37,12 @@ const Datasets = () => {
     axios
       .get(`/datasets?email=${userState.email}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setDatasetsState(res.data.file_details);
       })
       .catch((err) => {
         console.log(err);
-        toast.error("Uh Oh! Something went wrong.");
+        toast.error("Uh Oh! Something went wrong while loading the datasets");
       })
       .finally(() => {
         setIsLoading(false);

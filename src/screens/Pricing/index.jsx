@@ -23,7 +23,7 @@ const Pricing = () => {
         setPlansState(res.data.price);
       })
       .catch((err) => {
-        toast.error("Uh Oh! Something went wrong.");
+        toast.error("Uh Oh! Something went wrong while fetching the prices");
       })
       .finally(() => setIsLoading(false));
   }, []);

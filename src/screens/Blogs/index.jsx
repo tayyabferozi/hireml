@@ -84,8 +84,13 @@ const Blogs = () => {
         setBlogsState(res.data.blogs);
       })
       .catch((err) => {
-        console.log(err.response.data);
-        toast.error("Uh Oh! Something went wrong.");
+        console.log(err.response);
+
+        if (err.response.status === 401) {
+          toast.error("Please login to view the blogs");
+        } else {
+          toast.error("Uh Oh! Something went wrong while fetching the blogs");
+        }
       })
       .finally(() => setisLoading(false));
   }, []);

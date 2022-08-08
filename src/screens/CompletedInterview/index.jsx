@@ -25,7 +25,7 @@ const UpcomingInterview = () => {
         if (typeof err?.response?.data?.detail === "string") {
           toast.error(err.response.data.detail);
         } else {
-          toast.error("Uh Oh! Something went wrong.");
+          toast.error("Uh Oh! Something went wrong while opening the file");
         }
       });
   };
@@ -41,7 +41,7 @@ const UpcomingInterview = () => {
       })
       .catch((err) => {
         console.log(err);
-        toast.error("Uh Oh! Something went wrong.");
+        toast.error("Uh Oh! Something went wrong while fetching the records");
       })
       .finally(() => {
         setIsLoading(false);

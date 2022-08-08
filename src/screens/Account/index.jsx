@@ -191,7 +191,7 @@ const UpcomingInterview = () => {
             }
           }
         } else {
-          toast.error("Uh Oh! Something went wrong.");
+          toast.error("Uh Oh! Something went wrong updating your info");
         }
       })
       .finally(() => setIsFormLoading(false));

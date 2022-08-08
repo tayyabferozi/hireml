@@ -78,7 +78,9 @@ const ChangePassword = () => {
             }
           }
         } else {
-          toast.error("Uh Oh! Something went wrong.");
+          toast.error(
+            "Uh Oh! Something went wrong while changing the password"
+          );
         }
       })
       .finally(() => {

@@ -85,7 +85,7 @@ const AddCard = ({ onComplete, ...rest }) => {
             }
           }
         } else {
-          toast.error("Uh Oh! Something went wrong.");
+          toast.error("Uh Oh! Something went wrong while adding the card");
         }
       })
       .finally(() => {
@@ -159,17 +159,33 @@ const AddCard = ({ onComplete, ...rest }) => {
                   <input type="text" placeholder="City" />
                 </div>
                 <div className="col-sm-4 col-6">
-                  <Select rootClassName="mb-0" placeholder="Country">
+                  <Select
+                    name="Country"
+                    rootClassName="mb-0"
+                    placeholder="Country"
+                  >
                     {countryNames.map((el, idx) => {
-                      return <Option key={"country-" + idx}>{el}</Option>;
+                      return (
+                        <Option value={el} key={"state-" + idx}>
+                          {el}
+                        </Option>
+                      );
                     })}
                   </Select>
                 </div>
                 <div className="col-sm-4 col-6">
-                  <Select rootClassName="mb-0" placeholder="State">
+                  <Select
+                    onChange={inputChangeHandler}
+                    rootClassName="mb-0"
+                    placeholder="State"
+                  >
                     {/* {countryNames.map((el, idx) => {
-                    return <Option key={"state-" + idx}>{el}</Option>;
-                  })} */}
+                      return (
+                        <Option value={el} key={"state-" + idx}>
+                          {el}
+                        </Option>
+                      );
+                    })} */}
                   </Select>
                 </div>
                 <div className="col-sm-4 col-6">

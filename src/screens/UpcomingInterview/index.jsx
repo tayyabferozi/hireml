@@ -26,7 +26,7 @@ const UpcomingInterview = () => {
         if (err?.response?.data?.detail) {
           toast.error(err.response.data.detail);
         } else {
-          toast.error("Uh Oh! Something went wrong");
+          toast.error("Uh Oh! Something went wrong while starting notebook");
         }
       });
 
@@ -53,7 +53,9 @@ const UpcomingInterview = () => {
           toast.error(err.response.data.detail);
         } else {
           console.log(err);
-          toast.error("Uh Oh! Something went wrong");
+          toast.error(
+            "Uh Oh! Something went wrong while stopping the notebook"
+          );
         }
       });
 
@@ -76,7 +78,9 @@ const UpcomingInterview = () => {
       })
       .catch((err) => {
         console.log(err);
-        toast.error("Uh Oh! Something went wrong.");
+        toast.error(
+          "Uh Oh! Something went wrong while fetching upcoming interviews"
+        );
       })
       .finally(() => {
         setIsLoading(false);

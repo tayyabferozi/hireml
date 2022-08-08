@@ -54,6 +54,7 @@ const DashboardLayout = ({
 
   const logoutHandler = () => {
     dispatch(logoutUser());
+    window.location.href = "/";
   };
 
   useEffect(() => {

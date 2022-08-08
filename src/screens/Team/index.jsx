@@ -45,8 +45,12 @@ const UpcomingInterview = () => {
         setTeamState(res.data.teams);
       })
       .catch((err) => {
-        console.log(err);
-        toast.error("Uh Oh! Something went wrong");
+        if (userState.email) {
+          console.log(err);
+          toast.error(
+            "Uh Oh! Something went wrong while fetching team members"
+          );
+        }
       })
       .finally(() => setIsListLoading(false));
   }, [userState.email]);
@@ -68,7 +72,7 @@ const UpcomingInterview = () => {
         if (typeof err?.response?.data?.detail === "object") {
           setErrState(err?.response?.data?.detail[0].msg);
         } else {
-          toast.error("Uh Oh! Something went wrong.");
+          toast.error("Uh Oh! Something went wrong while sending the invite");
         }
       })
       .finally(() => setIsInviteLoading(false));
