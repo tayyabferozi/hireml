@@ -167,6 +167,7 @@ const AddCard = ({ onComplete, ...rest }) => {
                     name="Country"
                     rootClassName="mb-0"
                     placeholder="Country"
+                    onSelectChange={inputChangeHandler}
                   >
                     {countryNames.map((el, idx) => {
                       return (

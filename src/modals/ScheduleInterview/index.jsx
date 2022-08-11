@@ -341,14 +341,68 @@ const ScheduleInterview = ({ onComplete, ...rest }) => {
                       placeholder="To"
                       onSelectChange={inputChangeHandler}
                     >
-                      {timeData.map((el, idx) => {
-                        // if(formState )
-                        return (
-                          <Option key={"end_time" + idx} value={el}>
-                            {el}
-                          </Option>
-                        );
-                      })}
+                      {timeData
+                        .filter((el, idx) => {
+                          const startTimeBroken =
+                            formState.start_time.split(":");
+                          const endTimeBroken = el.split(":");
+
+                          let startTimeH = +startTimeBroken[0];
+                          if (
+                            startTimeH === 12 &&
+                            formState.start_period === "am"
+                          ) {
+                            startTimeH = 0;
+                          } else if (
+                            startTimeH !== 12 &&
+                            formState.start_period === "pm"
+                          ) {
+                            startTimeH += 12;
+                          }
+                          const startTimeM = startTimeBroken[1];
+
+                          let endTimePeriod = endTimeBroken[1].substring(2, 4);
+
+                          let endTimeH = +el.split(":")[0];
+                          if (endTimeH === 12 && endTimePeriod === "am") {
+                            endTimeH = 0;
+                          } else if (
+                            endTimeH !== 12 &&
+                            endTimePeriod === "pm"
+                          ) {
+                            endTimeH += 12;
+                          }
+                          // console.log(endTimeH);
+                          const endTimeM = endTimeBroken[1].substring(0, 2);
+
+                          // console.log(startTimeH, endTimeH);
+
+                          const d1 = new Date(
+                            2022,
+                            1,
+                            1,
+                            startTimeH,
+                            startTimeM
+                          );
+
+                          const d2 = new Date(2022, 1, 1, endTimeH, endTimeM);
+
+                          // console.log(d1, d2);
+                          // console.log(d1, d2);
+
+                          // console.log(+endTimeBroken[0], +startTimeBroken[0]);
+                          if (d1.getTime() < d2.getTime()) return true;
+
+                          return false;
+                        })
+                        .map((el, idx) => {
+                          // if(formState )
+                          return (
+                            <Option key={"end_time" + idx} value={el}>
+                              {el}
+                            </Option>
+                          );
+                        })}
                     </Select>
                   </div>
                 </GridContainer>
