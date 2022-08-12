@@ -29,6 +29,7 @@ const Select = React.forwardRef(
     const [selectedOption2, setSelectedOption2] = useState(defaultValue2 || "");
     const [showDropdown, setShowDropdown] = useState(false);
     const [searchState, setSearchState] = useState("");
+    const [keyPressState, setKeyPressState] = useState({ key: "", times: 0 });
 
     const showDropdownHandler = () => setShowDropdown(!showDropdown);
     const selectPlaceholder = placeholder || "Choose an option";
@@ -100,6 +101,51 @@ const Select = React.forwardRef(
         }
       });
     }, [searchState, listRef]);
+
+    useEffect(() => {
+      if (
+        typeof listRef.current === "object" &&
+        Object.keys(listRef).length !== 0
+      ) {
+        const ev = document.addEventListener("keypress", function (e) {
+          // console.log(listRef.current);
+          let offset = 0;
+          let elIdx = 0;
+
+          listRef.current.childNodes.forEach((el) => {
+            if (typeof el.innerHTML === "string")
+              if (el.innerHTML.trim().toLowerCase().startsWith(e.key)) {
+                // if (!offset) {
+                //   offset = el.offsetTop;
+                // }
+                // console.log(elIdx, keyPressState.times);
+                if (elIdx === keyPressState.times) {
+                  offset = el.offsetTop;
+                }
+
+                elIdx += 1;
+              }
+          });
+          listRef.current.scrollTo(0, offset);
+          setKeyPressState((prevState) => {
+            let newTimes = 0;
+            if (prevState.key === e.key) {
+              // console.log(prevState.key, e.key);
+              newTimes = prevState.times + 1;
+            }
+
+            return { key: e.key, times: newTimes };
+          });
+        });
+
+        return document.removeEventListener("keypress", ev);
+      }
+    }, []);
+
+    console.log(keyPressState.times);
+    useEffect(() => {
+      setKeyPressState({ key: "", times: 0 });
+    }, [showDropdown]);
 
     return (
       <SelectContext.Provider

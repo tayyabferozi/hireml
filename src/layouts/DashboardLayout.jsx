@@ -138,7 +138,8 @@ const DashboardLayout = ({
             )}
             <div className="user">
               <img
-                src="/assets/imgs/user.png"
+                width={60}
+                src="/assets/vectors/user.svg"
                 alt="user"
                 onClick={toggleMenu}
               />
