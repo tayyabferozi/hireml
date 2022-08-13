@@ -121,13 +121,34 @@ const UpcomingInterview = () => {
             <div className="col d-flex align-items-end">
               <Button
                 style={{ minHeight: 50 }}
+                primary
+                textClassName="text-light-1"
+                // onClick={startInstantInterviewHandler}
+                icon={{
+                  className: clsx(isInviteLoading && "o-0"),
+                  src: "/assets/vectors/invite.svg",
+                  title: "invite",
+                }}
+              >
+                <span
+                  className={clsx(
+                    isInviteLoading && "o-0",
+                    "d-1100-none text-white"
+                  )}
+                >
+                  Send Invite
+                </span>
+                {isInviteLoading && <Loader className="ab-loader md" />}
+              </Button>
+              {/* <Button
+                style={{ minHeight: 50 }}
                 className="px-30"
                 lg
                 primary
                 icon={{ src: "/assets/vectors/invite.svg", title: "invite" }}
               >
                 {isInviteLoading ? <Loader /> : "Send Invite"}
-              </Button>
+              </Button> */}
             </div>
           </GridContainer>
         </form>

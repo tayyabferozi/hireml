@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
+import $ from "jquery";
 import "react-calendar/dist/Calendar.css";
 
 import Modal from "../../components/Modal";
@@ -12,6 +13,7 @@ import { toast } from "react-toastify";
 import Loader from "../../components/Loader";
 import Select from "../../components/Select/select";
 import Option from "../../components/Select/option";
+import isEmpty from "../../utils/is-empty";
 
 const timeData = [
   "12:00am",
@@ -169,10 +171,10 @@ const intialFormState = {
   status: 1,
   candidate_name: "",
   interview_date: "",
-  start_time: "12:00:00",
-  end_time: "01:00:00",
-  start_period: "am",
-  end_period: "am",
+  start_time: "",
+  end_time: "",
+  start_period: "",
+  end_period: "",
   date: new Date(),
 };
 
@@ -180,6 +182,38 @@ const ScheduleInterview = ({ onComplete, ...rest }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [formState, setFormState] = useState(intialFormState);
   const { email } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    const d2 = new Date();
+
+    setFormState((prev) => {
+      let selectedDate;
+      for (const item of timeData) {
+        const startTimeBroken = item.split(":");
+
+        let startTimeH = +startTimeBroken[0];
+        const startTimeM = +startTimeBroken[1].substring(0, 2);
+        const startTimePeriod = startTimeBroken[1].substring(2, 4);
+        if (startTimeH === 12 && startTimePeriod === "am") {
+          startTimeH = 0;
+        } else if (startTimeH !== 12 && startTimePeriod === "pm") {
+          startTimeH += 12;
+        }
+        const d1 = new Date();
+        d1.setHours(startTimeH);
+        d1.setMinutes(startTimeM);
+        d1.setSeconds(0);
+
+        if (d2.getTime() > d1.getTime()) {
+          selectedDate = item;
+          break;
+        }
+      }
+
+      return { ...prev, start_time: selectedDate };
+    });
+    $(".react-calendar__tile.react-calendar__tile--now").click();
+  }, []);
 
   // function formateDateTime(d, t) {
   //   const d2 = new Date(d);
@@ -255,13 +289,23 @@ const ScheduleInterview = ({ onComplete, ...rest }) => {
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
+    if (isEmpty(formState.candidate_name)) {
+      toast.error("Please enter a name");
+      return;
+    }
+
+    if (isEmpty(formState.candidate_email)) {
+      toast.error("Please enter an email");
+      return;
+    }
+
     formState.offset = new Date().getTimezoneOffset();
 
     axios
       .post("/interviews", formState)
       .then((res) => {
         onComplete();
-        setFormState(intialFormState);
+        // setFormState(intialFormState);
       })
       .catch((err) => {
         try {
@@ -325,13 +369,47 @@ const ScheduleInterview = ({ onComplete, ...rest }) => {
                       onSelectChange={inputChangeHandler}
                       placeholder="From"
                     >
-                      {timeData.map((el, idx) => {
-                        return (
-                          <Option key={"start_time" + idx} value={el}>
-                            {el}
-                          </Option>
-                        );
-                      })}
+                      {timeData
+                        .filter((el) => {
+                          const startTimeBroken = el.split(":");
+
+                          let startTimeH = +startTimeBroken[0];
+                          const startTimeM = +startTimeBroken[1].substring(
+                            0,
+                            2
+                          );
+                          const startTimePeriod = startTimeBroken[1].substring(
+                            2,
+                            4
+                          );
+                          if (startTimeH === 12 && startTimePeriod === "am") {
+                            startTimeH = 0;
+                          } else if (
+                            startTimeH !== 12 &&
+                            startTimePeriod === "pm"
+                          ) {
+                            startTimeH += 12;
+                          }
+                          const d1 = new Date();
+                          d1.setHours(startTimeH);
+                          d1.setMinutes(startTimeM);
+                          d1.setSeconds(0);
+
+                          const d2 = new Date();
+
+                          if (d1.getTime() < d2.getTime()) return false;
+
+                          // console.log(d1);
+
+                          return true;
+                        })
+                        .map((el, idx) => {
+                          return (
+                            <Option key={"start_time" + idx} value={el}>
+                              {el}
+                            </Option>
+                          );
+                        })}
                     </Select>
                   </div>
                   <div className="col-6">
@@ -414,6 +492,7 @@ const ScheduleInterview = ({ onComplete, ...rest }) => {
                 minDate={new Date()}
                 onChange={(e) => inputChangeHandler(e, "date")}
                 value={formState.date}
+                defaultValue={new Date()}
               />
             </div>
           </GridContainer>

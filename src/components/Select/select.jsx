@@ -142,7 +142,7 @@ const Select = React.forwardRef(
       }
     }, []);
 
-    console.log(keyPressState.times);
+    // console.log(keyPressState.times);
     useEffect(() => {
       setKeyPressState({ key: "", times: 0 });
     }, [showDropdown]);
