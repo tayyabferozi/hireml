@@ -184,34 +184,34 @@ const ScheduleInterview = ({ onComplete, ...rest }) => {
   const { email } = useSelector((state) => state.user);
 
   useEffect(() => {
-    const d2 = new Date();
+    // const d2 = new Date();
 
-    setFormState((prev) => {
-      let selectedDate;
-      for (const item of timeData) {
-        const startTimeBroken = item.split(":");
+    // setFormState((prev) => {
+    //   let selectedDate;
+    //   for (const item of timeData) {
+    //     const startTimeBroken = item.split(":");
 
-        let startTimeH = +startTimeBroken[0];
-        const startTimeM = +startTimeBroken[1].substring(0, 2);
-        const startTimePeriod = startTimeBroken[1].substring(2, 4);
-        if (startTimeH === 12 && startTimePeriod === "am") {
-          startTimeH = 0;
-        } else if (startTimeH !== 12 && startTimePeriod === "pm") {
-          startTimeH += 12;
-        }
-        const d1 = new Date();
-        d1.setHours(startTimeH);
-        d1.setMinutes(startTimeM);
-        d1.setSeconds(0);
+    //     let startTimeH = +startTimeBroken[0];
+    //     const startTimeM = +startTimeBroken[1].substring(0, 2);
+    //     const startTimePeriod = startTimeBroken[1].substring(2, 4);
+    //     if (startTimeH === 12 && startTimePeriod === "am") {
+    //       startTimeH = 0;
+    //     } else if (startTimeH !== 12 && startTimePeriod === "pm") {
+    //       startTimeH += 12;
+    //     }
+    //     const d1 = new Date();
+    //     d1.setHours(startTimeH);
+    //     d1.setMinutes(startTimeM);
+    //     d1.setSeconds(0);
 
-        if (d2.getTime() > d1.getTime()) {
-          selectedDate = item;
-          break;
-        }
-      }
+    //     if (d2.getTime() > d1.getTime()) {
+    //       selectedDate = item;
+    //       break;
+    //     }
+    //   }
 
-      return { ...prev, start_time: selectedDate };
-    });
+    //   return { ...prev, start_time: selectedDate };
+    // });
     $(".react-calendar__tile.react-calendar__tile--now").click();
   }, []);
 
@@ -286,8 +286,56 @@ const ScheduleInterview = ({ onComplete, ...rest }) => {
     });
   };
 
+  console.log(formState);
+
   const formSubmitHandler = (e) => {
     e.preventDefault();
+
+    if (formState.start_time && formState.end_period) {
+      const startDateArr = formState.interview_date.split("-");
+      const startTimeArr = formState.start_time.split(":");
+      const endTimeArr = formState.end_time.split(":");
+      if (+startTimeArr[0] === 12 && formState.start_period === "am") {
+        startTimeArr[0] = 0;
+      } else if (+startTimeArr[0] !== 12 && formState.start_period === "pm") {
+        startTimeArr[0] = +startTimeArr[0] + 12;
+      }
+      if (+endTimeArr[0] === 12 && formState.end_period === "am") {
+        endTimeArr[0] = 0;
+      } else if (+endTimeArr[0] !== 12 && formState.end_period === "pm") {
+        endTimeArr[0] = +endTimeArr[0] + 12;
+      }
+      // console.log(startDateArr);
+      // console.log("------------");
+      // console.log(startTimeArr);
+      // console.log(formState.start_period);
+      // console.log("------------");
+      // console.log(endTimeArr);
+      // console.log(formState.end_period);
+
+      const startTime = new Date(
+        startDateArr[0],
+        startDateArr[1] - 1,
+        startDateArr[2],
+        startTimeArr[0],
+        startTimeArr[1]
+      );
+      const endTime = new Date(
+        startDateArr[0],
+        startDateArr[1],
+        startDateArr[2],
+        endTimeArr[0],
+        endTimeArr[1]
+      );
+
+      if (startTime.getTime() < Date.now() || endTime.getTime() < Date.now()) {
+        console.log(startTime, startTime.getTime());
+        console.log(endTime, endTime.getTime());
+        console.log(new Date(Date.now()).toLocaleString(), Date.now());
+        toast.error("You cannot enter a past time");
+        return;
+      }
+    }
 
     if (isEmpty(formState.candidate_name)) {
       toast.error("Please enter a name");
@@ -298,7 +346,6 @@ const ScheduleInterview = ({ onComplete, ...rest }) => {
       toast.error("Please enter an email");
       return;
     }
-
     formState.offset = new Date().getTimezoneOffset();
 
     axios
@@ -370,39 +417,39 @@ const ScheduleInterview = ({ onComplete, ...rest }) => {
                       placeholder="From"
                     >
                       {timeData
-                        .filter((el) => {
-                          const startTimeBroken = el.split(":");
+                        // .filter((el) => {
+                        //   const startTimeBroken = el.split(":");
 
-                          let startTimeH = +startTimeBroken[0];
-                          const startTimeM = +startTimeBroken[1].substring(
-                            0,
-                            2
-                          );
-                          const startTimePeriod = startTimeBroken[1].substring(
-                            2,
-                            4
-                          );
-                          if (startTimeH === 12 && startTimePeriod === "am") {
-                            startTimeH = 0;
-                          } else if (
-                            startTimeH !== 12 &&
-                            startTimePeriod === "pm"
-                          ) {
-                            startTimeH += 12;
-                          }
-                          const d1 = new Date();
-                          d1.setHours(startTimeH);
-                          d1.setMinutes(startTimeM);
-                          d1.setSeconds(0);
+                        //   let startTimeH = +startTimeBroken[0];
+                        //   const startTimeM = +startTimeBroken[1].substring(
+                        //     0,
+                        //     2
+                        //   );
+                        //   const startTimePeriod = startTimeBroken[1].substring(
+                        //     2,
+                        //     4
+                        //   );
+                        //   if (startTimeH === 12 && startTimePeriod === "am") {
+                        //     startTimeH = 0;
+                        //   } else if (
+                        //     startTimeH !== 12 &&
+                        //     startTimePeriod === "pm"
+                        //   ) {
+                        //     startTimeH += 12;
+                        //   }
+                        //   const d1 = new Date();
+                        //   d1.setHours(startTimeH);
+                        //   d1.setMinutes(startTimeM);
+                        //   d1.setSeconds(0);
 
-                          const d2 = new Date();
+                        //   const d2 = new Date();
 
-                          if (d1.getTime() < d2.getTime()) return false;
+                        //   if (d1.getTime() < d2.getTime()) return false;
 
-                          // console.log(d1);
+                        //   // console.log(d1);
 
-                          return true;
-                        })
+                        //   return true;
+                        // })
                         .map((el, idx) => {
                           return (
                             <Option key={"start_time" + idx} value={el}>

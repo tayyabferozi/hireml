@@ -2636,9 +2636,7 @@ input {
 
 .custom-select-container {
   position: relative;
-  border-radius: 10px;
   background-color: transparent;
-  border: 1px solid #c3cad9;
   z-index: 2;
   margin-top: 8px;
 }
@@ -2667,6 +2665,8 @@ input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  border-radius: 10px;
+  border: 1px solid #c3cad9;
 }
 
 @media screen and (max-width: 991px) {
@@ -2697,9 +2697,27 @@ input {
   transition: 0.4s ease;
 }
 
+.custom-select-container .selected-text.active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 0;
+}
+
 .custom-select-container .selected-text.active::after {
   -webkit-transform: translateY(calc(-50% - 2px)) rotateX(180deg);
           transform: translateY(calc(-50% - 2px)) rotateX(180deg);
+}
+
+.custom-select-container .selected-text.active::before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: calc(100% - 30px);
+  bottom: 0;
+  border-top: 1px solid #ccc;
 }
 
 .custom-select-container .selected-text .dual-valued {
@@ -2713,6 +2731,7 @@ input {
   border-radius: 5px;
   background-color: #fff;
   border: 1px solid #c3cad9;
+  border-top: 0;
 }
 
 .custom-select-container ul input {
@@ -2728,7 +2747,6 @@ input {
 
 .custom-select-container .select-options {
   position: absolute;
-  margin-top: 1px;
   width: 100%;
   border-radius: 4px;
   overflow-x: hidden;
@@ -2736,19 +2754,33 @@ input {
   left: 0;
   z-index: 1;
   max-height: 100px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .custom-select-container .select-options.with-search {
   max-height: 120px;
 }
 
+.custom-select-container .select-options::-webkit-scrollbar {
+  width: 3px;
+}
+
+.custom-select-container .select-options::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.custom-select-container .select-options::-webkit-scrollbar-thumb {
+  background-color: #f1f1f1;
+}
+
 .custom-select-container li {
   list-style-type: none;
-  padding: 8px 20px;
+  padding: 4px 20px;
   cursor: pointer;
   background: #fff;
-  border-bottom: 1px solid #c3cad9;
   margin: 0;
+  opacity: 0.7;
   -webkit-transition: 0.4s ease;
   transition: 0.4s ease;
 }
@@ -2764,7 +2796,7 @@ input {
 }
 
 .custom-select-container li:hover {
-  background: rgba(229, 229, 229, 0.5);
+  opacity: 1;
 }
 
 .custom-select-container .show-dropdown-options {
@@ -4461,6 +4493,11 @@ input {
     padding-left: 30px;
     padding-right: 30px;
   }
+}
+
+.card-modal .country-selector {
+  position: relative;
+  z-index: 3;
 }
 
 .saved-interview {
