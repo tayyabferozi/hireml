@@ -329,9 +329,9 @@ const ScheduleInterview = ({ onComplete, ...rest }) => {
       );
 
       if (startTime.getTime() < Date.now() || endTime.getTime() < Date.now()) {
-        console.log(startTime, startTime.getTime());
-        console.log(endTime, endTime.getTime());
-        console.log(new Date(Date.now()).toLocaleString(), Date.now());
+        // console.log(startTime, startTime.getTime());
+        // console.log(endTime, endTime.getTime());
+        // console.log(new Date(Date.now()).toLocaleString(), Date.now());
         toast.error("You cannot enter a past time");
         return;
       }
